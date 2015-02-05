@@ -7,10 +7,7 @@ module SimpleFormMarkdownEditor
     
     def preview
       markdown = preview_params.markdown
-      response = {
-        html: SimpleFormMarkdownEditor::Renderer.new(markdown).call
-      }
-      respond_with response
+      respond_with( html: SimpleFormMarkdownEditor::Renderer.call(markdown) )
     end
 
     private # =============================================================
