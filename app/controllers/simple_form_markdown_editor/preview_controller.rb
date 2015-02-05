@@ -3,12 +3,14 @@ module SimpleFormMarkdownEditor
 
     respond_to :js, :json
 
+    # ---------------------------------------------------------------------
+    
     def preview
       markdown = preview_params.markdown
       response = {
         html: SimpleFormMarkdownEditor::Renderer.new(markdown).call
       }
-      respond_with response.to_json
+      respond_with response
     end
 
     private # =============================================================
