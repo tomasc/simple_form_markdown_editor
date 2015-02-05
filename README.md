@@ -1,1 +1,1 @@
-# simple_form_markdown_editor
+# SimpleForm Markdown Editor
