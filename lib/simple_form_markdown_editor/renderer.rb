@@ -1,5 +1,6 @@
-# SimpleFormMarkdownEditor::Renderer.call("_bold_")
-# => <strong>bold</strong>
+# in your controller action:
+#   SimpleFormMarkdownEditor::Renderer.call("_bold_")
+#   => <strong>bold</strong>
 
 module SimpleFormMarkdownEditor
   class Renderer
