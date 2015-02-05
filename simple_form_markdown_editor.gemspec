@@ -6,7 +6,7 @@ require 'simple_form_markdown_editor/version'
 Gem::Specification.new do |spec|
   spec.name          = "simple_form_markdown_editor"
   spec.version       = SimpleFormMarkdownEditor::VERSION
-  spec.authors       = ["Tomas Celizna", "Asger Behncke Jacobsen"]
+  spec.authors       = ["Tomáš Celizna", "Asger Behncke Jacobsen"]
   spec.email         = ["tomas.celizna@gmail.com", "asger@"]
   spec.summary       = %q{Simple Markdown editor inspired by Github.}
   spec.description   = %q{Simple Markdown editor inspired by Github.}
