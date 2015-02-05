@@ -1,13 +1,10 @@
 module SimpleFormMarkdownEditor
   class PreviewController
 
-    respond_to :js, :json
-
-    # ---------------------------------------------------------------------
-    
     def preview
-      markdown = preview_params.markdown
-      respond_with( html: SimpleFormMarkdownEditor::Renderer.call(markdown) )
+      respond_to do |format|
+        format.html SimpleFormMarkdownEditor::Renderer.call(preview_params.markdown)
+      end
     end
 
     private # =============================================================
