@@ -61,7 +61,7 @@ module SimpleFormMarkdownEditor
 
     def help
       template.content_tag :div, class: %w(help) do
-        # TODO: How to add this and make it configurable?
+        # NOTE: How to add this / make it configurable?
         # * Locales
         # * ?
         'foo'
