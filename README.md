@@ -16,7 +16,9 @@ Or install it yourself as:
 
     $ gem install simple_form_markdown_editor
 
-To make it work you need to require the javascripts in `application.js`:
+## Usage
+
+Require the javascripts in `application.js`:
 
     //= require simple_form_markdown_editor
 
@@ -24,11 +26,9 @@ And require the stylesheets in `application.css`:
 
     *= require simple_form_markdown_editor
 
-Finally you need to mount the engine in your routes:
+Finally mount the engine in your routes:
 
     mount SimpleFormMarkdownEditor::Engine => "/"
-
-## Usage
 
 Use in forms:
 
