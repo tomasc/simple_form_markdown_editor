@@ -1,6 +1,8 @@
 # SimpleForm Markdown Editor
 
-A simple Markdown editor inspired by the Github comment editor.
+A simple [Markdown](http://daringfireball.net/projects/markdown/) editor inspired by the Github comment editor.
+
+[Markdown](http://daringfireball.net/projects/markdown/) rendering is handled by [Redcarpet](https://github.com/vmg/redcarpet).
 
 ## Installation
 
