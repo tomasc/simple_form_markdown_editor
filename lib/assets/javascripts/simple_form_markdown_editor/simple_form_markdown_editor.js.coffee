@@ -21,25 +21,36 @@ do ($ = jQuery, window, document) ->
     init: ->
       console.log 'init' if @settings.debug
 
-      # @get_textarea().hide()
+      @get_edit_tab().addClass('active')
 
-      # ---------------------------------------------------------------------
+      console.log @get_textarea().attr('data-preview-url')
 
-      # @get_toolbar_ul().children('li:first').addClass('active')
+      @get_toolbar_lis().on 'click', (e) =>
+        @get_toolbar_lis().removeClass('active')
+        $(e.currentTarget).addClass('active')
+        @$element.attr('data-toggled', $(e.currentTarget).data('toggle'))
 
-      # @get_toolbar_lis().on 'click', (event) ->
-      #   $li = $(event.currentTarget)
-      #   $li.siblings('li').removeClass('active')
-      #   $li.addClass('active')
-      #   e[$li.data('toggle')]()
+      @get_preview_tab().on 'click', (e) =>
+        $.ajax(
+          context: @element
+          type: 'POST'
+          url: @get_textarea().attr('data-preview-url')
+          data: text: @get_textarea().val()
+          success: (html) =>
+            @get_preview_div().html html or '<p>Nothing to preview</p>'
+        )
 
     # ---------------------------------------------------------------------
 
-    # get_editor_wrapper: -> @$element.children('div.editor:first')
-    # get_editor_toolbar: -> @$element.children('div.toolbar:first')
-    # get_textarea: -> @$element.children('textarea:first')
-    # get_toolbar_ul: -> @get_editor_toolbar().children('ul:first')
-    # get_toolbar_lis: -> @get_toolbar_ul().children('li')
+    get_editor_wrapper: -> @$element.children('div.editor:first')
+    get_textarea: -> @get_editor_div().children('textarea')
+    get_preview_div: -> @$element.children('div.preview')
+    get_editor_div: -> @$element.children('div.editor')
+    get_toolbar: -> @$element.children('div.toolbar:first')
+    get_preview_tab: -> @get_toolbar_lis().filter('.preview')
+    get_edit_tab: -> @get_toolbar_lis().filter('.edit')
+    get_toolbar_ul: -> @get_toolbar().children('ul:first')
+    get_toolbar_lis: -> @get_toolbar_ul().children('li')
 
   # ---------------------------------------------------------------------
 
@@ -68,8 +79,8 @@ do ($ = jQuery, window, document) ->
 
 $ ->
 
-  $('div.simple_form_markdown_editor').simple_form_markdown_editor()
+  $('div.markdown_editor').simple_form_markdown_editor()
 
   # make sure the plugin is correctly rebound to new elements
   $('body').on 'dom_update', (e) ->
-    $('div.simple_form_markdown_editor').simple_form_markdown_editor()
+    $('div.markdown_editor').simple_form_markdown_editor()

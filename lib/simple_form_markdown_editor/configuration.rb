@@ -3,8 +3,6 @@ module SimpleFormMarkdownEditor
 
     attr_accessor :commands
 
-    # TODO: Make everything customizable!
-
     def initialize
       @commands = {
         edit: 'Write',

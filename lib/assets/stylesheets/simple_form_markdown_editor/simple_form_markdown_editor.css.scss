@@ -1,0 +1,64 @@
+div.input.markdown_editor {
+
+  // --------------------------------------------------------------------
+
+  &[data-toggled="preview"] {
+    div.editor {
+      display: none;
+    }
+
+    div.preview {
+      display: block;
+    }
+  }
+
+  div.preview {
+    display: none;
+  }
+
+  // --------------------------------------------------------------------
+
+  div.toolbar {
+    ul.commands {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      margin-bottom: 5px;
+
+      li {
+        display: inline-block;
+
+        &.active {
+          span {
+            border-color: rgba(0, 0, 0, 0.15);
+          }
+        }
+
+        &.edit {}
+        &.preview {}
+
+        span {
+          display: inline-block;
+
+          border-top: 1px solid transparent;
+          border-left: 1px solid transparent;
+          border-right: 1px solid transparent;
+
+          font-family: helvetica, arial, sans-serif;
+          font-size: 14px;
+          line-height: 16px;
+
+          font-weight: normal;
+          font-style: normal;
+
+          letter-spacing: 0;
+          color: black;
+
+          border-radius: 2px;
+          padding: 6px 8px;
+          pointer: cursor;
+        }
+      }
+    }
+  }
+}
