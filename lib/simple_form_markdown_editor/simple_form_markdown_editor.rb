@@ -18,7 +18,7 @@ module SimpleFormMarkdownEditor
 
     # =====================================================================
 
-    def input
+    def input wrapper_options
       input_html_options['data-preview-url'] = SimpleFormMarkdownEditor::Engine.routes.url_helpers.preview_path
       toolbar + text_area + preview + help
     end
