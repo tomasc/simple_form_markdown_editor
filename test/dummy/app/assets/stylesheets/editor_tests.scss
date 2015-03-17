@@ -1,0 +1,32 @@
+body {
+  margin: 20px;
+  font-family: sans-serif;
+}
+
+
+div.input.markdown_editor {
+
+  label.markdown_editor {}
+
+  ul.commands {
+    li {
+      span {
+        border-radius: 2px 2px 0 0;
+        cursor: pointer;
+      }
+    }
+  }
+
+  div.editor {}
+
+  div.preview {
+    box-sizing: border-box;
+    padding: 10px;
+
+    h1, h2, h3, h4, h5, h6, p {
+      margin-top: 0;
+    }
+  }
+
+  div.help {}
+}
