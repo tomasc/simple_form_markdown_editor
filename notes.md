@@ -17,6 +17,12 @@ SimpleFormMarkdownEditor::MarkdownEditor.configure do |c|
   ]
   c.help = false
   c.markdown_engine = :kramdown
+  c.markdown = {
+    footnotes: true,
+    smartypants: true,
+    lax_spacing: true,
+    escape_html: false
+  }
 end
 ```
 
