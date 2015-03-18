@@ -6,40 +6,44 @@ Translations handled via `I18n`.
 
 #### Global
 
-```
+```ruby
 # config/initializers/simple_form_markdown_editor.rb
 
-SimpleFormMarkdownEditor::MarkdownEditorInput.configure do |c|
+SimpleFormMarkdownEditor::MarkdownEditor.configure do |c|
   c.buttons = [
     ['h1', 'h2', 'h3']
     ['strong', 'em'],
     ['a', 'img']
   ]
   c.help = false
+  c.markdown_engine = :kramdown
 end
 ```
 
 #### Single input
-```
-= f.input :markdown, as: :markdown_editor, input_html: { buttons: [['h1', 'h2'], ['a', 'img']], help: true }
+
+```ruby
+= f.input :markdown, as: :markdown_editor, input_html: { buttons: [['h1', 'h2'], ['a', 'img']], help: true, markdown_engine: :kramdown }
 ```
 
 ## Help
 
-Could be defined in a `I18n` `YAML` along with the functions:
+Defined in a `I18n` `YAML` along with the functions:
 
 ```YAML
 en:
   simple_form_markdown_editor:
-    toolbar:
-      edit: Write
-      preview: View
-    functions:
-      h1: header 1
-      h2: header 2
-      h3: header 3
-      a: link
-      img: image
+    tabs:
+      edit: Edit
+      preview: Preview
+      
+    buttons:
+      h1: Header 1
+      h2: Header 2
+      h3: Header 3
+      a: Link
+      img: Image
+      
     help:
       block_elements:
         title: Block Elements
@@ -51,19 +55,17 @@ en:
         title: Span Elements
 ```
 
-
 ## Interaction
 
-### Links
-If text is selected it should wrap it with `[` / `]()` and position the cursor inside the `()`
-If no text is selected it should show a modal/inline form
+Let's keep this very simple (for a start). The buttons are there really for convenience for those not so familiar with Markdown syntax. The buttons only work when a text is selected.
+For example, when link button wraps selected text with `[` / `]()` and positions cursor inside the `()`.
 
 ## Styling
 
-* Use [font awesome](http://fortawesome.github.io/Font-Awesome/)? How to do it together with the YAML?
+Extremely basic CSS included, which is easy to extend or override altogteher.
+
+* By default the buttons are labeled with text `B`, `I`, `H1`, …
+
+# Next versions
+
 * Highlighting trailing spaces (for linebreaks)?
-
-## Rendering
-It should be easy to configure and add "custom" markdown rendering.
-
-* Decouple the rendering config from the view config?
