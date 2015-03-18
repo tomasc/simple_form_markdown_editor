@@ -52,8 +52,8 @@ module SimpleFormMarkdownEditor
 
     def buttons
       template.content_tag :ul, class: 'buttons' do
-        button_list.map do |c, t|
-          button(c, t)
+        button_list.map do |b, t|
+          button(b, t)
         end.flatten.join.html_safe
       end
     end
@@ -62,9 +62,9 @@ module SimpleFormMarkdownEditor
       options[:buttons] || SimpleFormMarkdownEditor::MarkdownEditorInput.configuration.buttons
     end
 
-    def button(c, t)
-      template.content_tag :li, class: c.to_s.underscore.downcase, data: { toggle: c.to_s } do
-        template.content_tag :span, t.to_s, class: c.to_s.underscore.downcase
+    def button(b, t)
+      template.content_tag :li, class: ['button', b.to_s], data: { toggle: b.to_s } do
+        template.content_tag :span, t.to_s, class: b.to_s
       end
     end
 
@@ -107,7 +107,9 @@ module SimpleFormMarkdownEditor
     end
 
     def help_description
-      template.simple_format(i18n_help[:block_elements][:elements][:paragraphs][:text])
+      template.content_tag :div, class: ['help_text'] do
+        template.simple_format(i18n_help[:block_elements][:elements][:paragraphs][:text])
+      end
     end
 
     def i18n_help

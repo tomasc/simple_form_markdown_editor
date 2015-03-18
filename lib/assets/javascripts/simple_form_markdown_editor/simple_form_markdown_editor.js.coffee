@@ -23,12 +23,10 @@ do ($ = jQuery, window, document) ->
 
       @get_edit_tab().addClass('active')
 
-      console.log @get_textarea().attr('data-preview-url')
-
-      @get_toolbar_lis().on 'click', (e) =>
-        @get_toolbar_lis().removeClass('active')
+      @get_tab_lis().on 'click', (e) =>
+        @get_tab_lis().removeClass('active')
         $(e.currentTarget).addClass('active')
-        @$element.attr('data-toggled', $(e.currentTarget).data('toggle'))
+        @$element.attr('data-toggled', $(e.currentTarget).data('command'))
 
       @get_preview_tab().on 'click', (e) =>
         $.ajax(
@@ -46,11 +44,12 @@ do ($ = jQuery, window, document) ->
     get_textarea: -> @get_editor_div().children('textarea')
     get_preview_div: -> @$element.children('div.preview')
     get_editor_div: -> @$element.children('div.editor')
-    get_toolbar: -> @$element.children('div.toolbar:first')
-    get_preview_tab: -> @get_toolbar_lis().filter('.preview')
-    get_edit_tab: -> @get_toolbar_lis().filter('.edit')
-    get_toolbar_ul: -> @get_toolbar().children('ul:first')
-    get_toolbar_lis: -> @get_toolbar_ul().children('li')
+    get_header: -> @$element.children('div.header:first')
+    get_tabs_ul: -> @get_header().find('ul.tabs')
+    get_tab_lis: -> @get_tabs_ul().children('li')
+    get_preview_tab: -> @get_tab_lis().filter('.preview')
+    get_edit_tab: -> @get_tab_lis().filter('.edit')
+    get_buttons: -> @get_header().find('ul.buttons')
 
   # ---------------------------------------------------------------------
 

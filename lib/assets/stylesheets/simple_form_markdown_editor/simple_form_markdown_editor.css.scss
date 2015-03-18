@@ -1,3 +1,11 @@
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
 div.input.markdown_editor {
 
   // --------------------------------------------------------------------
@@ -18,14 +26,14 @@ div.input.markdown_editor {
 
   // --------------------------------------------------------------------
 
-  div.toolbar {
-    ul.commands {
+  div.header {
+    ul.tabs {
       margin: 0;
       padding: 0;
       list-style: none;
       margin-bottom: 5px;
 
-      li {
+      li.tab {
         display: inline-block;
 
         &.active {
@@ -59,6 +67,61 @@ div.input.markdown_editor {
           pointer: cursor;
         }
       }
+    }
+
+    ul.buttons {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      margin-bottom: 5px;
+
+      li.button {
+        display: inline-block;
+
+        span {
+          display: inline-block;
+
+          border-top: 1px solid transparent;
+          border-left: 1px solid transparent;
+          border-right: 1px solid transparent;
+
+          font-family: helvetica, arial, sans-serif;
+          font-size: 14px;
+          line-height: 16px;
+
+          font-weight: normal;
+          font-style: normal;
+
+          letter-spacing: 0;
+          color: black;
+
+          border-radius: 2px 2px 0 0;
+          padding: 6px 8px;
+          pointer: cursor;
+        }
+      }
+    }
+  }
+
+  div.help {
+    @include clearfix;
+
+    ul.sections {
+      float: left;
+      width: 200px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    ul.sub_sections {
+      float: left;
+      width: 200px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    div.help_text {
+      float: left;
     }
   }
 }
