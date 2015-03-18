@@ -1,31 +1,28 @@
 ## Configuration
-Maybe it would be good to configure the strings with `I18n` and make the configuration of the `gem` about buttons (functions) and rendering?
 
-### Configuration both in app and input
+Translations handled via `I18n`.
 
-#### For the whole app
+### Configuration
+
+#### Global
+
 ```
 # config/initializers/simple_form_markdown_editor.rb
 
 SimpleFormMarkdownEditor::MarkdownEditorInput.configure do |c|
-  c.functions = [
+  c.buttons = [
     ['h1', 'h2', 'h3']
     ['strong', 'em'],
     ['a', 'img']
   ]
+  c.help = false
 end
 ```
 
-#### For a single input
+#### Single input
 ```
-= f.input :markdown, as: :markdown_editor, input_html: { functions: [['h1', 'h2'], ['a', 'img']] }
+= f.input :markdown, as: :markdown_editor, input_html: { buttons: [['h1', 'h2'], ['a', 'img']], help: true }
 ```
-
-Arrays would group the buttons.
-
-### How to do:
-* Help included/excluded
-* Help hidden/shown per default
 
 ## Help
 
