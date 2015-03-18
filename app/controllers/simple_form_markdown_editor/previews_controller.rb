@@ -1,3 +1,5 @@
+require 'responders'
+
 module SimpleFormMarkdownEditor
   class PreviewsController < ActionController::Base
 

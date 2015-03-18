@@ -1,15 +1,12 @@
 module SimpleFormMarkdownEditor
   class Configuration
 
-    attr_accessor :commands
+    attr_accessor :buttons
     attr_accessor :extensions
     attr_accessor :render_options
 
     def initialize
-      @commands = {
-        edit: 'Write',
-        preview: 'Preview'
-      }
+      @buttons = [ %w(h1 h2 h3), %w(strong em), %w(a img) ]
       @extensions = {
         autolink: true,
         footnotes: true,

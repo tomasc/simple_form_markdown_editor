@@ -1,0 +1,27 @@
+en:
+  simple_form_markdown_editor:
+    tabs:
+      edit: Edit
+      preview: Preview
+    buttons:
+      h1: header 1
+      h2: header 2
+      h3: header 3
+      a: link
+      img: image
+    help:
+      block_elements:
+        title: Block Elements
+        elements:
+          paragraphs:
+            title: Paragraphs & Breaks
+            text: >
+              To create a paragraph, simply create a block of text that is not separated by one or more blank lines. Blocks of text separated by one or more blank lines will be parsed as paragraphs.
+
+              If you want to create a line break, end a line with two or more spaces, then hit Return/Enter.
+          headers:
+            title: Headers
+            description: Some description
+      span_elements:
+        title: Span Elements
+    loading: Loading preview &ellipsis;

@@ -38,14 +38,12 @@ en:
     tabs:
       edit: Edit
       preview: Preview
-      
     buttons:
       h1: Header 1
       h2: Header 2
       h3: Header 3
       a: Link
       img: Image
-      
     help:
       block_elements:
         title: Block Elements
@@ -64,7 +62,7 @@ For example, when link button wraps selected text with `[` / `]()` and positions
 
 ## Styling
 
-Extremely basic CSS included, which is easy to extend or override altogteher.
+Extremely basic CSS included, which is easy to extend or override altogether.
 
 * By default the buttons are labeled with text `B`, `I`, `H1`, …
 

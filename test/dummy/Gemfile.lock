@@ -1,11 +1,12 @@
 GIT
   remote: git@github.com:tomasc/simple_form_markdown_editor.git
-  revision: 510f0923d4fc8ea1fe6f3496863f189b479c106c
+  revision: 6e84261c9657ec23ed71fc709749d3ba3ddd1431
   branch: master
   specs:
     simple_form_markdown_editor (0.0.1)
-      rails (>= 3.1)
+      rails (>= 4.2)
       redcarpet
+      responders (~> 2.0)
       simple_form (>= 3.0.2)
 
 GEM
@@ -114,7 +115,7 @@ GEM
       sprockets-rails
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
-    rails-dom-testing (1.0.5)
+    rails-dom-testing (1.0.6)
       activesupport (>= 4.2.0.beta, < 5.0)
       nokogiri (~> 1.6.0)
       rails-deprecated_sanitizer (>= 1.0.1)
@@ -129,6 +130,8 @@ GEM
     rdoc (4.2.0)
       json (~> 1.4)
     redcarpet (3.2.2)
+    responders (2.1.0)
+      railties (>= 4.2.0, < 5)
     sass (3.4.13)
     sass-rails (5.0.1)
       railties (>= 4.0.0, < 5.0)
