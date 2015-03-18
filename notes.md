@@ -66,6 +66,6 @@ Extremely basic CSS included, which is easy to extend or override altogteher.
 
 * By default the buttons are labeled with text `B`, `I`, `H1`, …
 
-# Next versions
+## Next versions
 
 * Highlighting trailing spaces (for linebreaks)?
