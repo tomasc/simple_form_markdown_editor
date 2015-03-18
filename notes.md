@@ -10,11 +10,7 @@ Translations handled via `I18n`.
 # config/initializers/simple_form_markdown_editor.rb
 
 SimpleFormMarkdownEditor::MarkdownEditor.configure do |c|
-  c.buttons = [
-    ['h1', 'h2', 'h3']
-    ['strong', 'em'],
-    ['a', 'img']
-  ]
+  c.buttons = [ %w(h1 h2 h3), %w(strong em), %w(a img) ]
   c.help = false
   c.markdown_engine = :kramdown
   c.markdown = {
@@ -29,7 +25,7 @@ end
 #### Single input
 
 ```ruby
-= f.input :markdown, as: :markdown_editor, input_html: { buttons: [['h1', 'h2'], ['a', 'img']], help: true, markdown_engine: :kramdown }
+= f.input :markdown, as: :markdown_editor, input_html: { buttons: [ %w(h1 h2), %w(a img) ], help: true, markdown_engine: :kramdown }
 ```
 
 ## Help
