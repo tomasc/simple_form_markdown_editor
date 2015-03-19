@@ -72,18 +72,14 @@ module SimpleFormMarkdownEditor
 
     def button_groups
       template.content_tag :ul, class: 'button_groups' do
-        button_list.collect do |group|
-          button_group(group)
-        end.flatten.join.html_safe
+        button_list.collect { |group| button_group(group) }.flatten.join.html_safe
       end
     end
 
     def button_group g
       template.content_tag :li, class: 'button_group', data: { buttons: g.join(' ') } do
         template.content_tag :ul, class: 'buttons' do
-          g.collect do |b|
-            button(b)
-          end.flatten.join.html_safe
+          g.collect { |b| button(b) }.flatten.join.html_safe
         end
       end
     end
@@ -96,10 +92,7 @@ module SimpleFormMarkdownEditor
     end
 
     def button_list
-      # p options[:help][:enabled]
-      res = options[:buttons].presence || SimpleFormMarkdownEditor::MarkdownEditorInput.configuration.buttons
-      p res
-      res
+      options[:buttons].presence || SimpleFormMarkdownEditor::MarkdownEditorInput.configuration.buttons
     end
 
     # ---------------------------------------------------------------------
