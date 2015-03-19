@@ -1,6 +1,6 @@
 # SimpleForm Markdown Editor
 
-A simple [Markdown](http://daringfireball.net/projects/markdown/) editor inspired by [gollum_editor](https://github.com/samknight/gollum_editor) the editor used for Github's wiki pages.
+A simple [Markdown](http://daringfireball.net/projects/markdown/) editor inspired by [gollum_editor](https://github.com/samknight/gollum_editor), the editor used for Github's wiki pages.
 
 [Markdown](http://daringfireball.net/projects/markdown/) rendering is handled by [Redcarpet](https://github.com/vmg/redcarpet).
 
