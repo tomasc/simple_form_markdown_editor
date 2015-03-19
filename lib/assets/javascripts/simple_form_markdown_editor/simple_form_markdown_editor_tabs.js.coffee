@@ -3,7 +3,7 @@ do ($ = jQuery, window, document) ->
 
   pluginName = 'simple_form_markdown_editor_tabs'
   defaults =
-    debug: true
+    debug: false
 
   # ---------------------------------------------------------------------
 
