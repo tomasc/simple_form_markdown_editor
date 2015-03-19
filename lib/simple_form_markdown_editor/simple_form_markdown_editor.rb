@@ -149,14 +149,14 @@ module SimpleFormMarkdownEditor
       i18n_help.map do |section, content|
         content[:elements].map do |element, content|
           template.content_tag :div, class: ['help_text', element.to_s], data: { section: section.to_s, sub_section: element.to_s } do
-            content[:text]
+            SimpleFormMarkdownEditor::Renderer.call(content[:text])
           end
         end
       end.flatten.join.html_safe
     end
 
     # ---------------------------------------------------------------------
-      
+
     def i18n_help
       I18n.t(:help, scope: 'simple_form_markdown_editor')
     end

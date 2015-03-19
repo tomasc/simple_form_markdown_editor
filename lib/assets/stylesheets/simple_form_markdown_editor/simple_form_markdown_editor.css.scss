@@ -19,14 +19,14 @@
   font-weight: normal;
   font-style: normal;
   letter-spacing: 0;
-  color: black;
+  color: $black;
 }
 
-$grey-light: rgb(245, 245, 245);
+$grey-light: rgb(240, 240, 240);
 $grey: rgb(220, 220, 220);
 $grey-dark: rgb(180, 180, 180);
 $white: rgb(255, 255, 255);
-$black: rgb(0, 0, 0);
+$black: rgb(10, 10, 10);
 
 // ====================================================================
 
@@ -255,6 +255,15 @@ div.simple_form_markdown_editor {
 
         p {
           margin-top: 0;
+        }
+
+        code {
+          padding: 2px 3px;
+          font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+          font-size: 13px;
+          background-color: $grey-light;
+          border-radius: 2px;
+          white-space: nowrap
         }
 
         &.active {
