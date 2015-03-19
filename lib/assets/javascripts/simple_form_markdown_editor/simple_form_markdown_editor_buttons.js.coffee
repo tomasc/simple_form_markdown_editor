@@ -8,7 +8,7 @@ do ($ = jQuery, window, document) ->
       'strong':     '**%{str}**'
       'em':         '*%{str}*'
       'code':       '`%{str}`'
-      'hr':         '%{str}\n***'
+      'hr':         '%{str}***'
       'ul':         '* %{str}'
       'ol':         '1. %{str}'
       'blockquote': '> %{str}'

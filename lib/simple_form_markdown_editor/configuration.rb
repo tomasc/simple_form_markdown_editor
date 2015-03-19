@@ -13,7 +13,6 @@ module SimpleFormMarkdownEditor
         visible: false
       }
       @extensions = {
-        autolink: true,
         footnotes: true,
         highlight: true,
         space_after_headers: true,
