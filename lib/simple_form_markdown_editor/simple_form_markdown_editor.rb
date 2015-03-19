@@ -28,7 +28,7 @@ module SimpleFormMarkdownEditor
     private # =============================================================
 
     def input_html_options
-      super.merge!(data_preview_url: SimpleFormMarkdownEditor::Engine.routes.url_helpers.preview_path)
+      super.merge!(data: { preview_url: SimpleFormMarkdownEditor::Engine.routes.url_helpers.preview_path })
     end
 
     def input_html_classes

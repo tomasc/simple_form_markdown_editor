@@ -3,7 +3,7 @@ do ($ = jQuery, window, document) ->
 
   pluginName = 'simple_form_markdown_editor_tabs'
   defaults =
-    debug: false
+    debug: true
 
   # ---------------------------------------------------------------------
 
@@ -32,7 +32,7 @@ do ($ = jQuery, window, document) ->
         $.ajax(
           context: @element
           type: 'POST'
-          url: @get_editor_wrapper().attr('data-preview-url')
+          url: @$element.attr('data-preview-url')
           data: text: @get_textarea().val()
           success: (html) =>
             @get_preview_div().html(html) or "<p>#{@get_nothing_to_preview_text()}</p>"
@@ -40,11 +40,10 @@ do ($ = jQuery, window, document) ->
 
     # ---------------------------------------------------------------------
 
-    get_editor_wrapper: -> @$element.find('div.simple_form_markdown_editor')
-    get_textarea: -> @get_editor_div().children('textarea')
-    get_preview_div: -> @$element.children('div.preview')
-    get_editor_div: -> @$element.children('div.editor')
-    get_header: -> @$element.children('div.header:first')
+    get_textarea: -> @get_editor_div().find('textarea')
+    get_preview_div: -> @$element.find('div.preview')
+    get_editor_div: -> @$element.find('div.editor')
+    get_header: -> @$element.find('div.header:first')
     get_tabs_ul: -> @get_header().find('ul.tabs')
     get_tab_lis: -> @get_tabs_ul().children('li')
     get_preview_tab: -> @get_tab_lis().filter('.preview')
@@ -81,8 +80,8 @@ do ($ = jQuery, window, document) ->
 
 $ ->
 
-  $('div.markdown_editor').simple_form_markdown_editor_tabs()
+  $('div.simple_form_markdown_editor').simple_form_markdown_editor_tabs()
 
   # make sure the plugin is correctly rebound to new elements
   $('body').on 'dom_update', (e) ->
-    $('div.markdown_editor').simple_form_markdown_editor_tabs()
+    $('div.simple_form_markdown_editor').simple_form_markdown_editor_tabs()

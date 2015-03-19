@@ -93,8 +93,8 @@ do ($ = jQuery, window, document) ->
 
 $ ->
 
-  $('div.markdown_editor').simple_form_markdown_editor_help()
+  $('div.simple_form_markdown_editor').simple_form_markdown_editor_help()
 
   # make sure the plugin is correctly rebound to new elements
   $('body').on 'dom_update', (e) ->
-    $('div.markdown_editor').simple_form_markdown_editor_help()
+    $('div.simple_form_markdown_editor').simple_form_markdown_editor_help()

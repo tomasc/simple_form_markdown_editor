@@ -61,7 +61,7 @@ end
 #### Single input
 
 ```ruby
-= f.input :markdown, as: :markdown_editor, input_html: { buttons: [ %w(h1 h2), %w(a img) ], help: true, markdown_engine: :kramdown }
+= f.input :markdown, as: :markdown_editor, help: { enabled: true, visible: false }, buttons: [ %w(h1 h2), %w(a img) ]
 ```
 
 ## Todo
