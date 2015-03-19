@@ -120,9 +120,7 @@ module SimpleFormMarkdownEditor
 
     def help_sections
       template.content_tag :ul, class: %w(sections) do
-        i18n_help.map do |section, content|
-          help_section(section, content)
-        end.flatten.join.html_safe
+        i18n_help.map { |section, content| help_section(section, content) }.flatten.join.html_safe
       end
     end
 
@@ -136,9 +134,7 @@ module SimpleFormMarkdownEditor
     def help_sub_sections
       i18n_help.map do |section, content|
         template.content_tag :ul, class: ['sub_sections', section.to_s] do
-          content[:elements].map do |section, content|
-            help_sub_section(section, content)
-          end.flatten.join.html_safe
+          content[:elements].map { |section, content| help_sub_section(section, content) }.flatten.join.html_safe
         end
       end.flatten.join.html_safe
     end
@@ -160,6 +156,8 @@ module SimpleFormMarkdownEditor
       end.flatten.join.html_safe
     end
 
+    # ---------------------------------------------------------------------
+      
     def i18n_help
       I18n.t(:help, scope: 'simple_form_markdown_editor')
     end
