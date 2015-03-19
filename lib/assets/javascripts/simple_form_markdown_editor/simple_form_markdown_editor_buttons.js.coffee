@@ -4,6 +4,22 @@ do ($ = jQuery, window, document) ->
   pluginName = 'simple_form_markdown_editor_buttons'
   defaults =
     debug: false
+    definitions:
+      'strong':     '**%{str}**'
+      'italic':     '*%{str}*'
+      'code':       '`%{str}`'
+      'hr':         '%{str}\n***'
+      'ul':         '* %{str}'
+      'ol':         '1. %{str}'
+      'blockquote': '> %{str}'
+      'h1':         '# %{str}'
+      'h2':         '## %{str}'
+      'h3':         '### %{str}'
+      'h4':         '#### %{str}'
+      'h5':         '##### %{str}'
+      'h6':         '###### %{str}'
+      'a':          '[%{str}](|)'
+      'img':        '![%{str}](|)'
 
   # ---------------------------------------------------------------------
 
@@ -21,36 +37,24 @@ do ($ = jQuery, window, document) ->
     init: ->
       console.log 'init' if @settings.debug
 
-      @get_buttons().filter('.help').addClass('active')
+      if @get_help_div().attr('data-visible') == 'true'
+        @get_help_button().addClass('active')
 
-      @get_buttons().filter('.help').on 'click', (e) =>
+      @get_help_button().on 'click', (e) =>
         $(e.currentTarget).toggleClass('active')
-        help_visible = @get_help_div().attr('data-visible')
-        @get_help_div().attr 'data-visible', if help_visible == 'true' then 'false' else 'true'
+        @toggle_help_visibility()
 
-      # @get_edit_tab().addClass('active')
-
-      # @get_tab_lis().on 'click', (e) =>
-      #   @get_tab_lis().removeClass('active')
-      #   $(e.currentTarget).addClass('active')
-      #   @$element.attr('data-toggled', $(e.currentTarget).data('command'))
-
-      # @get_preview_tab().on 'click', (e) =>
-      #   $.ajax(
-      #     context: @element
-      #     type: 'POST'
-      #     url: @get_textarea().attr('data-preview-url')
-      #     data: text: @get_textarea().val()
-      #     success: (html) =>
-      #       @get_preview_div().html html or '<p>Nothing to preview</p>'
-      #   )
+      @get_command_buttons().on 'click', (e) =>
+        $btn = $(e.currentTarget)
+        cmd = $btn.attr('value')
+        @execute_command(cmd)
 
     # ---------------------------------------------------------------------
 
     # get_editor_wrapper: -> @$element.children('div.editor:first')
-    # get_textarea: -> @get_editor_div().children('textarea')
+    get_textarea: -> @get_editor_div().children('textarea')
     # get_preview_div: -> @$element.children('div.preview')
-    # get_editor_div: -> @$element.children('div.editor')
+    get_editor_div: -> @$element.children('div.editor')
     get_header_div: -> @$element.children('div.header:first')
     get_help_div: -> @$element.children('div.help')
     # get_tabs_ul: -> @get_header().find('ul.tabs')
@@ -62,6 +66,48 @@ do ($ = jQuery, window, document) ->
     get_buttons_uls: -> @get_button_group_lis().children('ul.buttons')
     get_button_lis: -> @get_buttons_uls().children('li.button')
     get_buttons: -> @get_button_lis().children('button')
+    get_command_buttons: -> @get_buttons().not(@get_help_button())
+    get_help_button: -> @get_buttons().filter('.help')
+
+    execute_command: (cmd) ->
+      selection = @get_selection()
+      definition = @settings.definitions[cmd]
+      replacement = definition.replace('%{str}', selection.text)
+      @replace_selection(selection, replacement)
+
+    get_selection: ->
+      e = @get_textarea().get(0)
+      l = e.selectionEnd - e.selectionStart
+      {
+        start: e.selectionStart
+        end: e.selectionEnd
+        length: l
+        text: e.value.substr(e.selectionStart, l)
+      }
+
+    set_selection: (pos_start, pos_end) ->
+      e = @get_textarea().get(0)
+      e.focus()
+      e.selectionStart = pos_start
+      e.selectionEnd = pos_end
+      get_selection
+
+    replace_selection: (selection, replacement) ->
+      e = @get_textarea().get(0)
+      pos_start = selection.start
+      pos_end = pos_start + replacement.length
+      e.value = e.value.substr(0, pos_start) + replacement + e.value.substr(selection.end, e.value.length)
+      @set_selection(pos_start, pos_end)
+      {
+        start: pos_start
+        end: pos_end
+        length: replacement.length
+        text: replacement
+      }
+
+    toggle_help_visibility: ->
+      visible = @get_help_div().attr('data-visible')
+      @get_help_div().attr 'data-visible', if visible == 'true' then 'false' else 'true'
 
   # ---------------------------------------------------------------------
 

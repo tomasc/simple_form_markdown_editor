@@ -69,3 +69,4 @@ Extremely basic CSS included, which is easy to extend or override altogether.
 ## Next versions
 
 * Highlighting trailing spaces (for linebreaks)?
+* ctrl+z
