@@ -81,6 +81,7 @@ module SimpleFormMarkdownEditor
     end
 
     def button b
+      return if b == 'help' && !help_enabled?
       template.content_tag :li, class: ['button', b], data: { toggle: b } do
         template.content_tag :button, I18n.t(b.to_sym, scope: 'simple_form_markdown_editor.buttons'), class: b, value: b, role: '', state: '', name: '', type: 'button'
       end
@@ -105,7 +106,8 @@ module SimpleFormMarkdownEditor
     # ---------------------------------------------------------------------
 
     def help
-      template.content_tag :div, class: %w(help), data: { visible: help_visible } do
+      return unless help_enabled?
+      template.content_tag :div, class: %w(help), data: { visible: help_visible? } do
         template.content_tag :div, class: %w(help_wrapper) do
           help_sections + help_sub_sections + help_texts
         end
@@ -158,12 +160,12 @@ module SimpleFormMarkdownEditor
       I18n.t(:help, scope: 'simple_form_markdown_editor')
     end
 
-    def show_help
-      button_list.contains?('help')
+    def help_enabled?
+      options.fetch(:help, {}).fetch(:enabled, nil) || SimpleFormMarkdownEditor::MarkdownEditorInput.configuration.help.fetch(:enabled, false)
     end
 
-    def help_visible
-      false
+    def help_visible?
+      options.fetch(:help, {}).fetch(:visible, nil) || SimpleFormMarkdownEditor::MarkdownEditorInput.configuration.help.fetch(:visible, false)
     end
 
   end
