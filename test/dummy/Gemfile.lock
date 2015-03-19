@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:tomasc/simple_form_markdown_editor.git
-  revision: a1bd6eb6e88bf295cac12834de77ce051ed62e53
+  revision: 869b53599785f21df6a3eab2d7a09eb2d86d88c4
   branch: master
   specs:
     simple_form_markdown_editor (0.0.1)
