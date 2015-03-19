@@ -6,7 +6,7 @@ do ($ = jQuery, window, document) ->
     debug: false
     definitions:
       'strong':     '**%{str}**'
-      'italic':     '*%{str}*'
+      'em':     '*%{str}*'
       'code':       '`%{str}`'
       'hr':         '%{str}\n***'
       'ul':         '* %{str}'
@@ -70,13 +70,12 @@ do ($ = jQuery, window, document) ->
     get_help_button: -> @get_buttons().filter('.help')
 
     execute_command: (cmd) ->
-      selection = @get_selection()
+      textarea = @get_textarea().get(0)
+      selection = @get_selection(textarea)
       definition = @settings.definitions[cmd]
-      replacement = definition.replace('%{str}', selection.text)
-      @replace_selection(selection, replacement)
+      @replace_selection(textarea, selection, definition)
 
-    get_selection: ->
-      e = @get_textarea().get(0)
+    get_selection: (e) ->
       l = e.selectionEnd - e.selectionStart
       {
         start: e.selectionStart
@@ -85,19 +84,18 @@ do ($ = jQuery, window, document) ->
         text: e.value.substr(e.selectionStart, l)
       }
 
-    set_selection: (pos_start, pos_end) ->
-      e = @get_textarea().get(0)
-      e.focus()
+    set_selection: (e, pos_start, pos_end) ->
+      $(e).focus()
       e.selectionStart = pos_start
       e.selectionEnd = pos_end
-      get_selection
+      @get_selection(e)
 
-    replace_selection: (selection, replacement) ->
-      e = @get_textarea().get(0)
+    replace_selection: (e, selection, definition) ->
+      replacement = definition.replace('%{str}', selection.text)
       pos_start = selection.start
       pos_end = pos_start + replacement.length
       e.value = e.value.substr(0, pos_start) + replacement + e.value.substr(selection.end, e.value.length)
-      @set_selection(pos_start, pos_end)
+      @set_selection(e, pos_start, pos_end)
       {
         start: pos_start
         end: pos_end
