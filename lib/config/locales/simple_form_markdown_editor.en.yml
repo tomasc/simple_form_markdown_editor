@@ -68,7 +68,7 @@ en:
             text: >
               To create inline spans of code, simply wrap the code in backticks (`). Markdown will turn `myFunction` into myFunction.
           images:
-            title: images
+            title: Images
             text: >
               Markdown image syntax looks a lot like the syntax for links; it is essentially the same syntax preceded by an exclamation point (!). For example, if you want to link to an image at https://github.com/unicorn.png with the alternate text My Unicorn, you would write ![My Unicorn](https://github.com/unicorn.png).
       miscellaneous:
