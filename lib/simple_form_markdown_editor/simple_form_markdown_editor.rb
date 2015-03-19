@@ -56,9 +56,9 @@ module SimpleFormMarkdownEditor
       %w(edit preview)
     end
 
-    def tab t
-      template.content_tag :li, class: ['tab', t.to_s.underscore.downcase], data: { command: t.to_s } do
-        template.content_tag :span, I18n.t(t.to_sym, scope: 'simple_form_markdown_editor.tabs'), class: t.to_s.underscore.downcase
+    def tab name
+      template.content_tag :li, class: ['tab', name.to_s.underscore.downcase], data: { command: name.to_s } do
+        template.content_tag :span, I18n.t(name.to_sym, scope: 'simple_form_markdown_editor.tabs'), class: name.to_s.underscore.downcase
       end
     end
 
