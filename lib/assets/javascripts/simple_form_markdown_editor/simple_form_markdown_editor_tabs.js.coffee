@@ -35,7 +35,7 @@ do ($ = jQuery, window, document) ->
           url: @get_editor_wrapper().attr('data-preview-url')
           data: text: @get_textarea().val()
           success: (html) =>
-            @get_preview_div().html(html) or "<p>Nothing to preview.</p>"
+            @get_preview_div().html(html) or "<p>#{@get_nothing_to_preview_text()}</p>"
         )
 
     # ---------------------------------------------------------------------
@@ -49,6 +49,10 @@ do ($ = jQuery, window, document) ->
     get_tab_lis: -> @get_tabs_ul().children('li')
     get_preview_tab: -> @get_tab_lis().filter('.preview')
     get_edit_tab: -> @get_tab_lis().filter('.edit')
+    get_nothing_to_preview_text: -> 
+      # TODO: try to get this from data-nothing-to-preview-text, 
+      # otherwise use this as a default
+      "Nothing to preview."
 
   # ---------------------------------------------------------------------
 
