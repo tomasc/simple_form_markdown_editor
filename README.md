@@ -97,6 +97,10 @@ en:
 ```
 
 
+## Testing
+
+The gem includes a rails app for easy testing, simply `cd test/dummy` and `bundle exec bin/rails s`, then direct your browser to `127.0.0.1:3000` to see the editor in action.
+
 ## Todo
 
 * How to make it possible to plug in other render engines?
