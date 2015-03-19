@@ -163,7 +163,7 @@ module SimpleFormMarkdownEditor
     end
 
     def help_visible
-      true
+      false
     end
 
   end

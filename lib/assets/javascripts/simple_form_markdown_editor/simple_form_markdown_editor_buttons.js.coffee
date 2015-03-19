@@ -6,7 +6,7 @@ do ($ = jQuery, window, document) ->
     debug: false
     definitions:
       'strong':     '**%{str}**'
-      'em':     '*%{str}*'
+      'em':         '*%{str}*'
       'code':       '`%{str}`'
       'hr':         '%{str}\n***'
       'ul':         '* %{str}'
@@ -51,16 +51,10 @@ do ($ = jQuery, window, document) ->
 
     # ---------------------------------------------------------------------
 
-    # get_editor_wrapper: -> @$element.children('div.editor:first')
     get_textarea: -> @get_editor_div().children('textarea')
-    # get_preview_div: -> @$element.children('div.preview')
     get_editor_div: -> @$element.children('div.editor')
     get_header_div: -> @$element.children('div.header:first')
     get_help_div: -> @$element.children('div.help')
-    # get_tabs_ul: -> @get_header().find('ul.tabs')
-    # get_tab_lis: -> @get_tabs_ul().children('li')
-    # get_preview_tab: -> @get_tab_lis().filter('.preview')
-    # get_edit_tab: -> @get_tab_lis().filter('.edit')
     get_button_groups_ul: -> @get_header_div().find('ul.button_groups')
     get_button_group_lis: -> @get_button_groups_ul().children('li.button_group')
     get_buttons_uls: -> @get_button_group_lis().children('ul.buttons')
@@ -70,38 +64,38 @@ do ($ = jQuery, window, document) ->
     get_help_button: -> @get_buttons().filter('.help')
 
     execute_command: (cmd) ->
-      textarea = @get_textarea().get(0)
-      selection = @get_selection(textarea)
+      $textarea = @get_textarea()
+      selection = @get_selection($textarea)
       definition = @settings.definitions[cmd]
-      @replace_selection(textarea, selection, definition)
-
-    get_selection: (e) ->
-      l = e.selectionEnd - e.selectionStart
-      {
-        start: e.selectionStart
-        end: e.selectionEnd
-        length: l
-        text: e.value.substr(e.selectionStart, l)
-      }
-
-    set_selection: (e, pos_start, pos_end) ->
-      $(e).focus()
-      e.selectionStart = pos_start
-      e.selectionEnd = pos_end
-      @get_selection(e)
-
-    replace_selection: (e, selection, definition) ->
       replacement = definition.replace('%{str}', selection.text)
-      pos_start = selection.start
-      pos_end = pos_start + replacement.length
-      e.value = e.value.substr(0, pos_start) + replacement + e.value.substr(selection.end, e.value.length)
-      @set_selection(e, pos_start, pos_end)
+      caret_pos = replacement.indexOf('|')
+      start = selection.start
+      end = selection.start + replacement.length
+      if caret_pos > -1
+        replacement = replacement.replace(/\|/g, '')
+        start = selection.start + caret_pos
+        end = selection.start + caret_pos
+      @replace_selection($textarea, replacement)
+      @set_selection($textarea, start, end)
+
+    get_selection: ($e) ->
       {
-        start: pos_start
-        end: pos_end
-        length: replacement.length
-        text: replacement
+        start: $e[0].selectionStart
+        end: $e[0].selectionEnd
+        length: $e[0].selectionEnd - $e[0].selectionStart
+        text: $e.val().substring($e[0].selectionStart, $e[0].selectionEnd)
       }
+
+    set_selection: ($e, start, end) ->
+      $e.focus()
+      $e[0].selectionStart = start
+      $e[0].selectionEnd = end
+
+    replace_selection: ($e, string) ->
+      start = $e[0].selectionStart
+      end = $e[0].selectionEnd
+      val = $e.val()
+      $e.val(val.substring(0, start) + string + val.substring(end, val.length))
 
     toggle_help_visibility: ->
       visible = @get_help_div().attr('data-visible')
