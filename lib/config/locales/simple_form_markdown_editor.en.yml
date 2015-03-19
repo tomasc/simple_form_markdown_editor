@@ -82,4 +82,5 @@ en:
             title: Escaping
             text: >
               If you want to use a special Markdown character in your document (such as displaying literal asterisks), you can escape the character with the backslash (\). Markdown will ignore the character directly after a backslash.
-    loading: Loading preview ...
+    loading: Loading preview …
+    nothing_to_preview: Nothing to preview.

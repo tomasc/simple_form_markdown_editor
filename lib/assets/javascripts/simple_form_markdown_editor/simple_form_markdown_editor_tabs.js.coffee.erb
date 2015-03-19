@@ -35,7 +35,7 @@ do ($ = jQuery, window, document) ->
           url: @get_editor_wrapper().attr('data-preview-url')
           data: text: @get_textarea().val()
           success: (html) =>
-            @get_preview_div().html html or '<p>Nothing to preview</p>'
+            @get_preview_div().html html or "<p><%= I18n.t(:nothing_to_preview, scope: :simple_form_markdown_editor) %></p>"
         )
 
     # ---------------------------------------------------------------------
