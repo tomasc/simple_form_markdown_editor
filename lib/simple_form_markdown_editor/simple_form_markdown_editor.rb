@@ -46,7 +46,7 @@ module SimpleFormMarkdownEditor
     def tabs
       template.content_tag :div, class: 'editor_tabs' do
         template.content_tag :ul, class: 'tabs' do
-          tab_list.collect { |t| tab(t) }.flatten.join.html_safe
+          tab_list.map{ |t| tab(t) }.flatten.join.html_safe
         end
       end
     end
@@ -71,14 +71,14 @@ module SimpleFormMarkdownEditor
 
     def button_groups
       template.content_tag :ul, class: 'button_groups' do
-        button_list.collect { |group| button_group(group) }.flatten.join.html_safe
+        button_list.map{ |group| button_group(group) }.flatten.join.html_safe
       end
     end
 
     def button_group g
       template.content_tag :li, class: 'button_group', data: { buttons: g.join(' ') } do
         template.content_tag :ul, class: 'buttons' do
-          g.collect { |b| button(b) }.flatten.join.html_safe
+          g.map{ |b| button(b) }.flatten.join.html_safe
         end
       end
     end
@@ -119,7 +119,7 @@ module SimpleFormMarkdownEditor
 
     def help_sections
       template.content_tag :ul, class: %w(sections) do
-        i18n_help.map { |section, content| help_section(section, content) }.flatten.join.html_safe
+        i18n_help.map{ |section, content| help_section(section, content) }.flatten.join.html_safe
       end
     end
 
@@ -133,7 +133,7 @@ module SimpleFormMarkdownEditor
     def help_sub_sections
       i18n_help.map do |section, content|
         template.content_tag :ul, class: ['sub_sections', section.to_s] do
-          content[:elements].map { |section, content| help_sub_section(section, content) }.flatten.join.html_safe
+          content[:elements].map{ |section, content| help_sub_section(section, content) }.flatten.join.html_safe
         end
       end.flatten.join.html_safe
     end
