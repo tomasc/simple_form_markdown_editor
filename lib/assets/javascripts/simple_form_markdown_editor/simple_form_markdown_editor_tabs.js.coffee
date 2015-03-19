@@ -48,10 +48,7 @@ do ($ = jQuery, window, document) ->
     get_tab_lis: -> @get_tabs_ul().children('li')
     get_preview_tab: -> @get_tab_lis().filter('.preview')
     get_edit_tab: -> @get_tab_lis().filter('.edit')
-    get_nothing_to_preview_text: -> 
-      # TODO: try to get this from data-nothing-to-preview-text, 
-      # otherwise use this as a default
-      "Nothing to preview."
+    get_nothing_to_preview_text: -> @get_preview_div().data('nothing-to-preview-text') or "Nothing to preview."
 
   # ---------------------------------------------------------------------
 
