@@ -103,7 +103,7 @@ module SimpleFormMarkdownEditor
     end
 
     def preview
-      template.content_tag :div, I18n.t(:loading, scope: 'simple_form_markdown_editor'), class: %w(preview)
+      template.content_tag :div, I18n.t(:loading, scope: 'simple_form_markdown_editor'), class: %w(preview), data: { :'nothing-to-preview-text' => I18n.t(:nothing_to_preview, scope: 'simple_form_markdown_editor') }
     end
 
     # ---------------------------------------------------------------------
