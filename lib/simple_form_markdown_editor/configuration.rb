@@ -6,7 +6,7 @@ module SimpleFormMarkdownEditor
     attr_accessor :render_options
 
     def initialize
-      @buttons = [ %w(h1 h2 h3), %w(strong em), %w(a img) ]
+      @buttons = [%w(h1 h2 h3), %w(strong em), %w(a img), %w(help)]
       @extensions = {
         autolink: true,
         footnotes: true,

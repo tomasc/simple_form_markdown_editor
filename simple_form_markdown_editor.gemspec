@@ -21,6 +21,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "rails", ">= 4.2"
   spec.add_dependency "simple_form", ">= 3.0.2"
   spec.add_dependency "redcarpet"
+  spec.add_dependency "autoprefixer-rails"
 
   spec.add_dependency "responders", "~> 2.0"
 

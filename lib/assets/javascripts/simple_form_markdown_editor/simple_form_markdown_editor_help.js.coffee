@@ -1,7 +1,7 @@
 # https://github.com/jquery-boilerplate/jquery-boilerplate/
 do ($ = jQuery, window, document) ->
 
-  pluginName = 'simple_form_markdown_editor'
+  pluginName = 'simple_form_markdown_editor_help'
   defaults =
     debug: false
 
@@ -21,35 +21,50 @@ do ($ = jQuery, window, document) ->
     init: ->
       console.log 'init' if @settings.debug
 
-      @get_edit_tab().addClass('active')
+      @set_section_li @get_section_lis().first()
 
-      @get_tab_lis().on 'click', (e) =>
-        @get_tab_lis().removeClass('active')
-        $(e.currentTarget).addClass('active')
-        @$element.attr('data-toggled', $(e.currentTarget).data('command'))
+      @get_section_lis().on 'click', (e) =>
+        $li = $(e.currentTarget)
+        @set_section_li($li)
 
-      @get_preview_tab().on 'click', (e) =>
-        $.ajax(
-          context: @element
-          type: 'POST'
-          url: @get_textarea().attr('data-preview-url')
-          data: text: @get_textarea().val()
-          success: (html) =>
-            @get_preview_div().html html or '<p>Nothing to preview</p>'
-        )
+      @get_sub_section_lis().on 'click', (e) =>
+        $li = $(e.currentTarget)
+        @set_sub_section_li($li)
 
     # ---------------------------------------------------------------------
 
-    get_editor_wrapper: -> @$element.children('div.editor:first')
-    get_textarea: -> @get_editor_div().children('textarea')
-    get_preview_div: -> @$element.children('div.preview')
-    get_editor_div: -> @$element.children('div.editor')
-    get_header: -> @$element.children('div.header:first')
-    get_tabs_ul: -> @get_header().find('ul.tabs')
-    get_tab_lis: -> @get_tabs_ul().children('li')
-    get_preview_tab: -> @get_tab_lis().filter('.preview')
-    get_edit_tab: -> @get_tab_lis().filter('.edit')
-    get_buttons: -> @get_header().find('ul.buttons')
+    get_help_div: -> @$element.find('div.help')
+
+    get_sections_ul: -> @get_help_div().find('ul.sections')
+    get_section_lis: -> @get_sections_ul().children('li')
+    get_sub_section_ul: (section) -> @get_sub_sections_uls().filter(".#{section}")
+    get_sub_sections_uls: -> @get_help_div().find('ul.sub_sections')
+    get_sub_section_lis: -> @get_sub_sections_uls().children('li.sub_section')
+
+    get_help_text_divs: -> @get_help_div().find('div.help_text')
+
+    set_section_li: ($li) ->
+      $li.siblings('li').removeClass('active')
+      $li.addClass('active')
+      section = $li.data('toggle')
+      $sub_section_ul = @get_sub_section_ul(section)
+      @set_sub_section_ul($sub_section_ul)
+
+    set_sub_section_ul: ($ul) ->
+      $ul.siblings('ul').removeClass('active')
+      $ul.addClass('active')
+      $li = $ul.children('li:first')
+      @set_sub_section_li($li)
+
+    set_sub_section_li: ($li) ->
+      $li.siblings('li').removeClass('active')
+      $li.addClass('active')
+      $help_text_div = @get_help_text_divs().filter(".#{$li.data('toggle')}")
+      @set_help_text_div($help_text_div)
+
+    set_help_text_div: ($div) ->
+      $div.siblings('div').removeClass('active')
+      $div.addClass('active')
 
   # ---------------------------------------------------------------------
 
@@ -78,8 +93,8 @@ do ($ = jQuery, window, document) ->
 
 $ ->
 
-  $('div.markdown_editor').simple_form_markdown_editor()
+  $('div.markdown_editor').simple_form_markdown_editor_help()
 
   # make sure the plugin is correctly rebound to new elements
   $('body').on 'dom_update', (e) ->
-    $('div.markdown_editor').simple_form_markdown_editor()
+    $('div.markdown_editor').simple_form_markdown_editor_help()
