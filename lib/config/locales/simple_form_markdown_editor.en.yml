@@ -25,7 +25,7 @@ en:
         title: Block Elements
         elements:
           paragraphs:
-            title: Paragraphs & Breaks
+            title: 'Paragraphs & Breaks'
             text: >
               To create a paragraph, simply create a block of text that is not separated by one or more blank lines. Blocks of text separated by one or more blank lines will be parsed as paragraphs.
               If you want to create a line break, end a line with two or more spaces, then hit Return/Enter.
