@@ -174,13 +174,21 @@ module SimpleFormMarkdownEditor
     end
 
     def help_enabled?
-      return SimpleFormMarkdownEditor::MarkdownEditorInput.configuration.help.fetch(:enabled, false) if options.fetch(:help, {}).fetch(:enabled, nil).nil?
-      options[:help][:enabled]
+      enabled_in_options = options.fetch(:help, {}).fetch(:enabled, nil)
+      enabled_in_config = SimpleFormMarkdownEditor::MarkdownEditorInput.configuration.help.fetch(:enabled, false)
+
+      return enabled_in_config if enabled_in_options.nil?
+
+      enabled_in_options
     end
 
     def help_visible?
-      return SimpleFormMarkdownEditor::MarkdownEditorInput.configuration.help.fetch(:visible, false) if options.fetch(:help, {}).fetch(:visible, nil).nil?
-      options[:help][:visible]
+      visible_in_options = options.fetch(:help, {}).fetch(:visible, nil)
+      visible_in_config = SimpleFormMarkdownEditor::MarkdownEditorInput.configuration.help.fetch(:visible, false)
+
+      return visible_in_config if visible_in_options.nil?
+
+      visible_in_options
     end
 
   end
