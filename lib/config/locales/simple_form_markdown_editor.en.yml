@@ -4,9 +4,17 @@ en:
       edit: Edit
       preview: Preview
     buttons:
+      ol: ol
+      ul: ul
       h1: h1
       h2: h2
       h3: h3
+      h4: h4
+      h5: h5
+      h6: h6
+      blockquote: quote
+      hr: hr
+      code: code
       strong: bold
       em: italic
       a: link

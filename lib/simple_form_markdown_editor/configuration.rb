@@ -7,7 +7,7 @@ module SimpleFormMarkdownEditor
     attr_accessor :render_options
 
     def initialize
-      @buttons = [%w(h1 h2 h3), %w(strong em), %w(a img), %w(help)]
+      @buttons = [%w(h1 h2 h3), %w(a img), %w(strong em code), %w(ul ol blockquote hr), %w(help)]
       @help = {
         enabled: true,
         visible: false
