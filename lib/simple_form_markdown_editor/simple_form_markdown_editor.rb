@@ -47,9 +47,7 @@ module SimpleFormMarkdownEditor
     def tabs
       template.content_tag :div, class: 'editor_tabs' do
         template.content_tag :ul, class: 'tabs' do
-          tab_list.collect do |t|
-            tab(t)
-          end.flatten.join.html_safe
+          tab_list.collect { |t| tab(t) }.flatten.join.html_safe
         end
       end
     end
