@@ -22,8 +22,6 @@ module SimpleFormMarkdownEditor
     private # =============================================================
 
     def markdown_renderer
-      # NOTE: How would we make it possible to use any kind of Renderer?
-      # NOTE: In some cases you have custom Markdown (basic gsub), how could this be implemented as well?
       Redcarpet::Markdown.new(
         Redcarpet::Render::HTML.new(self.class.configuration.render_options),
         self.class.configuration.extensions

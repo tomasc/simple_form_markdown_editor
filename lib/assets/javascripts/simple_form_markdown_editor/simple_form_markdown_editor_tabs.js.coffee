@@ -32,7 +32,7 @@ do ($ = jQuery, window, document) ->
         $.ajax(
           context: @element
           type: 'POST'
-          url: @get_textarea().attr('data-preview-url')
+          url: @get_editor_wrapper().attr('data-preview-url')
           data: text: @get_textarea().val()
           success: (html) =>
             @get_preview_div().html html or '<p>Nothing to preview</p>'

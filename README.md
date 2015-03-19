@@ -35,3 +35,37 @@ Finally mount the engine in your routes:
 Use in forms:
 
     = form.input :markdown, as: :markdown_editor
+
+### Configuration
+
+Configuration is possible app-wide (using an initializer) and per input.
+
+#### Global
+
+```ruby
+# config/initializers/simple_form_markdown_editor.rb
+
+SimpleFormMarkdownEditor::MarkdownEditor.configure do |c|
+  c.buttons = [ %w(h1 h2 h3), %w(strong em), %w(a img) ]
+  c.help = false
+  c.markdown_engine = :kramdown
+  c.markdown = {
+    footnotes: true,
+    smartypants: true,
+    lax_spacing: true,
+    escape_html: false
+  }
+end
+```
+
+#### Single input
+
+```ruby
+= f.input :markdown, as: :markdown_editor, input_html: { buttons: [ %w(h1 h2), %w(a img) ], help: true, markdown_engine: :kramdown }
+```
+
+## Todo
+
+* How to make it possible to plug in other render engines?
+* How to implement "custom Markdown" (basic gsub)?
+
