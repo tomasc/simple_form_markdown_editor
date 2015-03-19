@@ -89,17 +89,17 @@ en:
       img: Image
     help:
       block_elements:
-        title: Block Elements
+        title: Blocks
         elements:
           headers:
-            title: Headers
-            text: Some description
+            title: # Headers
+            text: A very good explanation
 ```
 
 
 ## Testing
 
-The gem includes a rails app for easy testing, simply `cd test/dummy` and `bundle exec bin/rails s`, then direct your browser to `127.0.0.1:3000` to see the editor in action.
+The gem includes a rails app for easy testing, simply `cd test/dummy`, `bundle install` and `bundle exec bin/rails s`, then direct your browser to `127.0.0.1:3000` to see the editor in action.
 
 ## Todo
 

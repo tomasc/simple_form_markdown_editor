@@ -15,7 +15,7 @@ gem 'slim'
 
 gem 'mongoid'
 
-gem 'simple_form_markdown_editor', git: 'git@github.com:tomasc/simple_form_markdown_editor.git', branch: 'master'
+gem 'simple_form_markdown_editor'
 
 group :development, :test do
   gem 'byebug'
