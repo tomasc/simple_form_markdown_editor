@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = SimpleFormMarkdownEditor::VERSION
   spec.authors       = ["Tomáš Celizna", "Asger Behncke Jacobsen"]
   spec.email         = ["tomas.celizna@gmail.com", "asger@8kilo.com"]
-  spec.summary       = %q{Simple Markdown editor inspired by Github.}
-  spec.description   = %q{Simple Markdown editor inspired by Github.}
+  spec.summary       = %q{Simple Markdown editor (inspired by GitHub editor).}
+  spec.description   = %q{Simple Markdown editor (inspired by GitHub editor).}
   spec.homepage      = "https://github.com/tomasc/simple_form_markdown_editor"
   spec.license       = "MIT"
 
