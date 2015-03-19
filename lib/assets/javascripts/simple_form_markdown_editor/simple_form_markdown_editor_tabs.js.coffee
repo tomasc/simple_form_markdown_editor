@@ -40,7 +40,7 @@ do ($ = jQuery, window, document) ->
 
     # ---------------------------------------------------------------------
 
-    get_editor_wrapper: -> @$element.children('div.editor:first')
+    get_editor_wrapper: -> @$element.find('div.simple_form_markdown_editor')
     get_textarea: -> @get_editor_div().children('textarea')
     get_preview_div: -> @$element.children('div.preview')
     get_editor_div: -> @$element.children('div.editor')
@@ -49,7 +49,6 @@ do ($ = jQuery, window, document) ->
     get_tab_lis: -> @get_tabs_ul().children('li')
     get_preview_tab: -> @get_tab_lis().filter('.preview')
     get_edit_tab: -> @get_tab_lis().filter('.edit')
-    get_buttons: -> @get_header().find('ul.buttons')
 
   # ---------------------------------------------------------------------
 

@@ -20,11 +20,21 @@ module SimpleFormMarkdownEditor
     # =====================================================================
 
     def input wrapper_options
-      input_html_options['data-preview-url'] = SimpleFormMarkdownEditor::Engine.routes.url_helpers.preview_path
-      header + help + text_area + preview
+      merged_input_options = merge_wrapper_options(input_html_options, wrapper_options)
+      template.content_tag(:div, merged_input_options) do
+        header + help + editor + preview
+      end
     end
 
     private # =============================================================
+
+    def input_html_options
+      super.merge!(data_preview_url: SimpleFormMarkdownEditor::Engine.routes.url_helpers.preview_path)
+    end
+
+    def input_html_classes
+      super.push('simple_form_markdown_editor')
+    end
 
     def header
       template.content_tag :div, class: 'header' do
@@ -88,12 +98,15 @@ module SimpleFormMarkdownEditor
     end
 
     def button_list
-      options[:buttons] || SimpleFormMarkdownEditor::MarkdownEditorInput.configuration.buttons
+      # p options[:help][:enabled]
+      res = options[:buttons].presence || SimpleFormMarkdownEditor::MarkdownEditorInput.configuration.buttons
+      p res
+      res
     end
 
     # ---------------------------------------------------------------------
 
-    def text_area
+    def editor
       template.content_tag :div, class: %w(editor) do
         @builder.text_area(attribute_name, input_html_options).html_safe
       end
@@ -161,11 +174,13 @@ module SimpleFormMarkdownEditor
     end
 
     def help_enabled?
-      options.fetch(:help, {}).fetch(:enabled, nil) || SimpleFormMarkdownEditor::MarkdownEditorInput.configuration.help.fetch(:enabled, false)
+      return SimpleFormMarkdownEditor::MarkdownEditorInput.configuration.help.fetch(:enabled, false) if options.fetch(:help, {}).fetch(:enabled, nil).nil?
+      options[:help][:enabled]
     end
 
     def help_visible?
-      options.fetch(:help, {}).fetch(:visible, nil) || SimpleFormMarkdownEditor::MarkdownEditorInput.configuration.help.fetch(:visible, false)
+      return SimpleFormMarkdownEditor::MarkdownEditorInput.configuration.help.fetch(:visible, false) if options.fetch(:help, {}).fetch(:visible, nil).nil?
+      options[:help][:visible]
     end
 
   end

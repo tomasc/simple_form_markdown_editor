@@ -37,8 +37,7 @@ do ($ = jQuery, window, document) ->
     init: ->
       console.log 'init' if @settings.debug
 
-      if @get_help_div().attr('data-visible') == 'true'
-        @get_help_button().addClass('active')
+      @get_help_button().addClass('active') if @help_is_visible()
 
       @get_help_button().on 'click', (e) =>
         $(e.currentTarget).toggleClass('active')
@@ -62,6 +61,8 @@ do ($ = jQuery, window, document) ->
     get_buttons: -> @get_button_lis().children('button')
     get_command_buttons: -> @get_buttons().not(@get_help_button())
     get_help_button: -> @get_buttons().filter('.help')
+
+    help_is_visible: -> @get_help_div().attr('data-visible') == 'true'
 
     execute_command: (cmd) ->
       $textarea = @get_textarea()
@@ -98,8 +99,7 @@ do ($ = jQuery, window, document) ->
       $e.val(val.substring(0, start) + string + val.substring(end, val.length))
 
     toggle_help_visibility: ->
-      visible = @get_help_div().attr('data-visible')
-      @get_help_div().attr 'data-visible', if visible == 'true' then 'false' else 'true'
+      @get_help_div().attr('data-visible', String(!@help_is_visible()))
 
   # ---------------------------------------------------------------------
 

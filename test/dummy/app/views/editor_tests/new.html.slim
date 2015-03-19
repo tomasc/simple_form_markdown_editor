@@ -1,2 +1,2 @@
 = simple_form_for @editor_test do |f|
-  = f.input :markdown, as: :markdown_editor, help: { enabled: false, visible: false }
+  = f.input :markdown, as: :markdown_editor, help: { enabled: true, visible: true }, buttons: [%w(h1 h2 h3), %w(help)]
