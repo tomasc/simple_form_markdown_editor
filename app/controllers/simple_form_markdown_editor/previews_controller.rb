@@ -14,6 +14,8 @@ module SimpleFormMarkdownEditor
     private # =============================================================
 
     def preview_params
+      return {} unless params[:text]
+
       params.require(:text)
     end
 
