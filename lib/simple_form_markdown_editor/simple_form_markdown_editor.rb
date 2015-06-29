@@ -21,7 +21,10 @@ module SimpleFormMarkdownEditor
 
     def input wrapper_options
       template.content_tag :div, merge_wrapper_options(input_html_options, wrapper_options) do
-        header + help + editor + preview
+        template.concat header
+        template.concat help
+        template.concat editor
+        template.concat preview
       end
     end
 

@@ -34,13 +34,11 @@ do ($ = jQuery, window, document) ->
     # ---------------------------------------------------------------------
 
     get_help_div: -> @$element.find('div.help')
-
     get_sections_ul: -> @get_help_div().find('ul.sections')
     get_section_lis: -> @get_sections_ul().children('li')
     get_sub_section_ul: (section) -> @get_sub_sections_uls().filter(".#{section}")
     get_sub_sections_uls: -> @get_help_div().find('ul.sub_sections')
     get_sub_section_lis: -> @get_sub_sections_uls().children('li.sub_section')
-
     get_help_text_divs: -> @get_help_div().find('div.help_text')
 
     set_section_li: ($li) ->
