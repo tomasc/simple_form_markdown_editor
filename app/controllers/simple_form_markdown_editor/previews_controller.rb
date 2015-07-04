@@ -1,7 +1,7 @@
-require 'responders'
-
 module SimpleFormMarkdownEditor
   class PreviewsController < ActionController::Base
+
+    protect_from_forgery with: :exception
 
     respond_to :html
 
@@ -14,6 +14,7 @@ module SimpleFormMarkdownEditor
     private # =============================================================
 
     def preview_params
+      return unless params[:text].present?
       params.require(:text)
     end
 
