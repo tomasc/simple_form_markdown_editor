@@ -33,7 +33,9 @@ do ($ = jQuery, window, document) ->
           context: @element
           type: 'POST'
           url: @$element.attr('data-preview-url')
-          data: text: @get_textarea().val()
+          data:
+            _method: 'PUT'
+            text: @get_textarea().val() || ''
           success: (html) =>
             @get_preview_div().html(html) or "<p>#{@get_nothing_to_preview_text()}</p>"
         )
