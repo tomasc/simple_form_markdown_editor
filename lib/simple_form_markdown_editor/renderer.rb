@@ -16,6 +16,7 @@ module SimpleFormMarkdownEditor
     end
 
     def call
+      return unless @str.present?
       markdown_renderer.render(@str).html_safe
     end
 
