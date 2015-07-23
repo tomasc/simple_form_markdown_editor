@@ -47,7 +47,7 @@ Refer to [redcarpet](https://github.com/vmg/redcarpet) for a list of available [
 ```ruby
 # config/initializers/simple_form_markdown_editor.rb
 
-SimpleFormMarkdownEditor::MarkdownEditor.configure do |c|
+SimpleFormMarkdownEditor::MarkdownEditorInput.configure do |c|
   c.buttons = [ %w(h1 h2 h3), %w(strong em), %w(a img) ]
   c.help = { enabled: true, visible: false }
   c.extensions = {
@@ -57,8 +57,8 @@ SimpleFormMarkdownEditor::MarkdownEditor.configure do |c|
     escape_html: false
   }
   c.render_options = {
-    :no_images,
-    :no_links
+    no_images: true,
+    no_links: true
   }
 end
 ```
