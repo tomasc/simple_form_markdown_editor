@@ -77,10 +77,4 @@ do ($ = jQuery, window, document) ->
 
 # =====================================================================
 
-$ ->
-
-  $('div.simple_form_markdown_editor').simple_form_markdown_editor_tabs()
-
-  # make sure the plugin is correctly rebound to new elements
-  $('body').on 'dom_update', (e) ->
-    $('div.simple_form_markdown_editor').simple_form_markdown_editor_tabs()
+$ -> $('div.simple_form_markdown_editor').simple_form_markdown_editor_tabs()
