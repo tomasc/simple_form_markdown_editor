@@ -3,7 +3,6 @@ require 'i18n'
 
 module SimpleFormMarkdownEditor
   class MarkdownEditorInput < SimpleForm::Inputs::Base
-
     class << self
       attr_accessor :configuration
 
@@ -31,7 +30,19 @@ module SimpleFormMarkdownEditor
     private # =============================================================
 
     def input_html_options
-      super.merge!(data: { preview_url: SimpleFormMarkdownEditor::Engine.routes.url_helpers.preview_path })
+      super.merge(
+        data: {
+          preview_path: options.fetch(:route, MarkdownEditorInput.configuration.route)
+        }
+      )
+    end
+
+    def render_options
+      options.fetch(:render_options, MarkdownEditorInput.configuration.render_options)
+    end
+
+    def extensions
+      options.fetch(:extensions, MarkdownEditorInput.configuration.extensions)
     end
 
     def input_html_classes
@@ -60,7 +71,9 @@ module SimpleFormMarkdownEditor
 
     def tab name
       template.content_tag :li, class: ['tab', name.to_s.underscore.downcase], data: { command: name.to_s } do
-        template.content_tag :span, I18n.t(name.to_sym, scope: 'simple_form_markdown_editor.tabs'), class: name.to_s.underscore.downcase
+        template.content_tag :span,
+          I18n.t(name.to_sym, scope: 'simple_form_markdown_editor.tabs'),
+          class: name.to_s.underscore.downcase
       end
     end
 
@@ -94,7 +107,7 @@ module SimpleFormMarkdownEditor
     end
 
     def button_list
-      options[:buttons].presence || SimpleFormMarkdownEditor::MarkdownEditorInput.configuration.buttons
+      options[:buttons].presence || MarkdownEditorInput.configuration.buttons
     end
 
     # ---------------------------------------------------------------------
@@ -152,7 +165,7 @@ module SimpleFormMarkdownEditor
       i18n_help.map do |section, content|
         content[:elements].map do |element, content|
           template.content_tag :div, class: ['help_text', element.to_s], data: { section: section.to_s, sub_section: element.to_s } do
-            SimpleFormMarkdownEditor::Renderer.call(content[:text])
+            Renderer.call(content[:text], { render_options: render_options, extensions: extensions })
           end
         end
       end.flatten.join.html_safe
@@ -166,7 +179,7 @@ module SimpleFormMarkdownEditor
 
     def help_enabled?
       enabled_in_options = options.fetch(:help, {}).fetch(:enabled, nil)
-      enabled_in_config = SimpleFormMarkdownEditor::MarkdownEditorInput.configuration.help.fetch(:enabled, false)
+      enabled_in_config = MarkdownEditorInput.configuration.help.fetch(:enabled, false)
 
       return enabled_in_config if enabled_in_options.nil?
 
@@ -175,12 +188,11 @@ module SimpleFormMarkdownEditor
 
     def help_visible?
       visible_in_options = options.fetch(:help, {}).fetch(:visible, nil)
-      visible_in_config = SimpleFormMarkdownEditor::MarkdownEditorInput.configuration.help.fetch(:visible, false)
+      visible_in_config = MarkdownEditorInput.configuration.help.fetch(:visible, false)
 
       return visible_in_config if visible_in_options.nil?
 
       visible_in_options
     end
-
   end
 end

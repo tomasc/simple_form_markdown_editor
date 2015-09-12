@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    simple_form_markdown_editor (0.0.3)
+    simple_form_markdown_editor (0.0.4)
       rails (>= 4.2)
       redcarpet
       simple_form (>= 3.0.2)
@@ -94,7 +94,7 @@ GEM
       activemodel (~> 4.0)
     sprockets (3.3.4)
       rack (~> 1.0)
-    sprockets-rails (2.3.2)
+    sprockets-rails (2.3.3)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)

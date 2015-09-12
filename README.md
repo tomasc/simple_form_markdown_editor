@@ -60,13 +60,14 @@ SimpleFormMarkdownEditor::MarkdownEditorInput.configure do |c|
     no_images: true,
     no_links: true
   }
+  c.route = '/custom/preview'
 end
 ```
 
 ### Input
 
 ```ruby
-= f.input :markdown, as: :markdown_editor, help: { enabled: true, visible: false }, buttons: [ %w(h1 h2), %w(a img) ]
+= f.input :markdown, as: :markdown_editor, help: { enabled: true, visible: false }, buttons: [ %w(h1 h2), %w(a img) ], route: '/custom/preview'
 ```
 
 ## Internationalization

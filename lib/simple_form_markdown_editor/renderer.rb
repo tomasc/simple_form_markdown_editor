@@ -1,51 +1,34 @@
 require 'redcarpet'
 
 module SimpleFormMarkdownEditor
-  class Renderer
-
+  class Renderer < Struct.new :str, :options
     def self.call(*args)
       new(*args).call
     end
 
-    # =====================================================================
+    def options
+      @options ||= {}
+    end
 
-    attr_reader :str
+    def render_options
+      @render_options ||= options.fetch(:render_options, MarkdownEditorInput.configuration.render_options)
+    end
 
-    def initialize str
-      @str = str
+    def extensions
+      @extensions ||= options.fetch(:extensions, MarkdownEditorInput.configuration.extensions)
     end
 
     def call
-      return unless @str.present?
-      markdown_renderer.render(@str).html_safe
+      return unless str.present?
+      markdown_renderer.render(str).html_safe
     end
 
     private # =============================================================
 
     def markdown_renderer
       Redcarpet::Markdown.new(
-        Redcarpet::Render::HTML.new(self.class.configuration.render_options),
-        self.class.configuration.extensions
+        Redcarpet::Render::HTML.new(render_options), extensions
       )
     end
-
-    # ---------------------------------------------------------------------
-
-    class << self
-      attr_accessor :configuration
-
-      def configure
-        @configuration ||= Configuration.new
-        yield @configuration
-      end
-
-      def configuration
-        @configuration ||= Configuration.new
-      end
-    end
-
   end
-
-  # ---------------------------------------------------------------------
-
 end

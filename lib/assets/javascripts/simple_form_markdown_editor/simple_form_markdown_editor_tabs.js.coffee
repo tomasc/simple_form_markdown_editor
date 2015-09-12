@@ -32,7 +32,7 @@ do ($ = jQuery, window, document) ->
         $.ajax(
           context: @element
           type: 'POST'
-          url: @$element.attr('data-preview-url')
+          url: @$element.attr('data-preview-path')
           data:
             _method: 'PUT'
             text: @get_textarea().val() || ''
