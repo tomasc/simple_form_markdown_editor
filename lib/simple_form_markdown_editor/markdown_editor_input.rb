@@ -30,11 +30,11 @@ module SimpleFormMarkdownEditor
     private # =============================================================
 
     def input_html_options
-      super.merge(
-        data: {
-          preview_path: options.fetch(:route, MarkdownEditorInput.configuration.route)
-        }
+      super[:data] ||= {}
+      super[:data].merge!(
+        preview_path: options.fetch(:route, MarkdownEditorInput.configuration.route)
       )
+      super
     end
 
     def render_options
