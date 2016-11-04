@@ -15,7 +15,7 @@ gem 'slim'
 gem 'mongoid'
 gem 'responders'
 
-gem 'simple_form_markdown_editor'
+gem 'simple_form_markdown_editor', path: '../..'
 
 group :development, :test do
   gem 'byebug'

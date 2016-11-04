@@ -8,33 +8,47 @@ A simple [Markdown](http://daringfireball.net/projects/markdown/) editor inspire
 
 Add this line to your application's Gemfile:
 
-    gem 'simple_form_markdown_editor'
+```ruby
+gem 'simple_form_markdown_editor'
+```
 
 And then execute:
 
-    $ bundle
+```sh
+$ bundle
+```
 
 Or install it yourself as:
 
-    $ gem install simple_form_markdown_editor
+```sh
+$ gem install simple_form_markdown_editor
+```
 
 ## Usage
 
 Require the javascripts in `application.js`:
 
-    //= require simple_form_markdown_editor
+```jsx
+//= require simple_form_markdown_editor
+```
 
 And require the stylesheets in `application.css`:
 
-    *= require simple_form_markdown_editor
+```css
+*= require simple_form_markdown_editor
+```
 
 Finally mount the engine in your routes:
 
-    mount SimpleFormMarkdownEditor::Engine => "/"
+```ruby
+mount SimpleFormMarkdownEditor::Engine => "/"
+```
 
 Use in forms:
 
-    = form.input :markdown, as: :markdown_editor
+```slim
+= form.input :markdown, as: :markdown_editor
+```
 
 ## Configuration
 
@@ -56,6 +70,7 @@ SimpleFormMarkdownEditor::MarkdownEditorInput.configure do |c|
     lax_spacing: true,
     escape_html: false
   }
+  c.render_class = CustomRenderClass
   c.render_options = {
     no_images: true,
     no_links: true
@@ -105,7 +120,6 @@ The gem includes a rails app for easy testing, simply `cd test/dummy`, `bundle i
 ## Todo
 
 * How to make it possible to plug in other render engines?
-* How to implement "custom Markdown" (basic gsub)?
 * Highlighting trailing spaces (for linebreaks)?
 * Implement keyboard shortcuts
 * Implement Ctrl+z

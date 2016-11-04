@@ -3,6 +3,7 @@ module SimpleFormMarkdownEditor
     attr_accessor :buttons
     attr_accessor :extensions
     attr_accessor :help
+    attr_accessor :render_class
     attr_accessor :render_options
     attr_accessor :route
 
@@ -33,6 +34,10 @@ module SimpleFormMarkdownEditor
         enabled: true,
         visible: false
       }
+    end
+
+    def render_class
+      @render_class ||= Redcarpet::Render::HTML
     end
 
     def render_options

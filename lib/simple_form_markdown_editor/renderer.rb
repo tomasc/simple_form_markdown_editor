@@ -10,6 +10,10 @@ module SimpleFormMarkdownEditor
       @options ||= {}
     end
 
+    def render_class
+      @render_class ||= options.fetch(:render_class, MarkdownEditorInput.configuration.render_class)
+    end
+
     def render_options
       @render_options ||= options.fetch(:render_options, MarkdownEditorInput.configuration.render_options)
     end
@@ -27,7 +31,7 @@ module SimpleFormMarkdownEditor
 
     def markdown_renderer
       Redcarpet::Markdown.new(
-        Redcarpet::Render::HTML.new(render_options), extensions
+        render_class.new(render_options), extensions
       )
     end
   end
