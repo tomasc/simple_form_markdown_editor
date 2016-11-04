@@ -35,6 +35,10 @@ module SimpleFormMarkdownEditor
       super
     end
 
+    def render_class
+      options.fetch(:render_class, MarkdownEditorInput.configuration.render_class)
+    end
+
     def render_options
       options.fetch(:render_options, MarkdownEditorInput.configuration.render_options)
     end
@@ -163,7 +167,7 @@ module SimpleFormMarkdownEditor
       i18n_help.map do |section, content|
         content[:elements].map do |el, con|
           template.content_tag :div, class: ['help_text', el.to_s], data: { section: section.to_s, sub_section: el.to_s } do
-            Renderer.call(con[:text], render_options: render_options, extensions: extensions)
+            Renderer.call(con[:text], render_class: render_class, render_options: render_options, extensions: extensions)
           end
         end
       end.flatten.join.html_safe

@@ -82,7 +82,7 @@ end
 ### Input
 
 ```ruby
-= f.input :markdown, as: :markdown_editor, help: { enabled: true, visible: false }, buttons: [ %w(h1 h2), %w(a img) ], route: '/custom/preview'
+= f.input :markdown, as: :markdown_editor, buttons: [ %w(h1 h2), %w(a img) ], help: { enabled: true, visible: false }, extensions: { footnotes: true }, render_class: CustomRenderClass, render_options: { no_images: true }, route: '/custom/preview'
 ```
 
 ## Internationalization
