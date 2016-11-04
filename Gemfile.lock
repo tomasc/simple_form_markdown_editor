@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    simple_form_markdown_editor (0.0.8)
+    simple_form_markdown_editor (0.0.9)
       rails (>= 4.2)
       redcarpet
       responders
