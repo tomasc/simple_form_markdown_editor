@@ -6,20 +6,20 @@ module SimpleFormMarkdownEditor
       new(*args).call
     end
 
-    def options
-      @options ||= {}
+    def initialize(str, options = {})
+      super(str, options)
     end
 
     def render_class
-      @render_class ||= options.fetch(:render_class, MarkdownEditorInput.configuration.render_class)
+      options.fetch(:render_class, MarkdownEditorInput.configuration.render_class)
     end
 
     def render_options
-      @render_options ||= options.fetch(:render_options, MarkdownEditorInput.configuration.render_options)
+      options.fetch(:render_options, MarkdownEditorInput.configuration.render_options)
     end
 
     def extensions
-      @extensions ||= options.fetch(:extensions, MarkdownEditorInput.configuration.extensions)
+      options.fetch(:extensions, MarkdownEditorInput.configuration.extensions)
     end
 
     def call
@@ -27,12 +27,10 @@ module SimpleFormMarkdownEditor
       markdown_renderer.render(str).html_safe
     end
 
-    private # =============================================================
+    private
 
     def markdown_renderer
-      Redcarpet::Markdown.new(
-        render_class.new(render_options), extensions
-      )
+      Redcarpet::Markdown.new(render_class.new(render_options), extensions)
     end
   end
 end

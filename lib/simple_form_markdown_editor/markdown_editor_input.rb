@@ -19,7 +19,12 @@ module SimpleFormMarkdownEditor
     # =====================================================================
 
     def input(wrapper_options)
-      template.content_tag :div, merge_wrapper_options(input_html_options, wrapper_options) do
+      attrs = merge_wrapper_options(input_html_options, wrapper_options)
+      attrs[:data] ||= {}
+      attrs[:data][:preview_path] = preview_path
+      attrs[:data][:options] = { render_class: render_class.to_s, render_options: render_options, extensions: extensions }
+
+      template.content_tag :div, attrs do
         template.concat header
         template.concat help
         template.concat editor
@@ -29,10 +34,8 @@ module SimpleFormMarkdownEditor
 
     private # =============================================================
 
-    def input_html_options
-      super[:data] ||= {}
-      super[:data][:preview_path] = options.fetch(:route, MarkdownEditorInput.configuration.route)
-      super
+    def preview_path
+      options.fetch(:route, MarkdownEditorInput.configuration.route)
     end
 
     def render_class
@@ -73,9 +76,11 @@ module SimpleFormMarkdownEditor
 
     def tab(name)
       template.content_tag :li, class: ['tab', name.to_s.underscore.downcase], data: { command: name.to_s } do
-        template.content_tag :span,
-                             I18n.t(name.to_sym, scope: 'simple_form_markdown_editor.tabs'),
-                             class: name.to_s.underscore.downcase
+        template.content_tag(
+          :span,
+          I18n.t(name.to_sym, scope: 'simple_form_markdown_editor.tabs'),
+          class: name.to_s.underscore.downcase
+        )
       end
     end
 
@@ -104,7 +109,16 @@ module SimpleFormMarkdownEditor
     def button(b)
       return if b == 'help' && !help_enabled?
       template.content_tag :li, class: ['button', b], data: { toggle: b } do
-        template.content_tag :button, I18n.t(b.to_sym, scope: 'simple_form_markdown_editor.buttons'), class: b, value: b, role: '', state: '', name: '', type: 'button'
+        template.content_tag(
+          :button,
+          I18n.t(b.to_sym, scope: 'simple_form_markdown_editor.buttons'),
+          class: b,
+          name: '',
+          role: '',
+          state: '',
+          type: 'button',
+          value: b
+        )
       end
     end
 
@@ -121,7 +135,12 @@ module SimpleFormMarkdownEditor
     end
 
     def preview
-      template.content_tag :div, I18n.t(:loading, scope: 'simple_form_markdown_editor'), class: %w(preview), data: { :'nothing-to-preview-text' => I18n.t(:nothing_to_preview, scope: 'simple_form_markdown_editor') }
+      template.content_tag(
+        :div,
+        I18n.t(:loading, scope: 'simple_form_markdown_editor'),
+        class: %w(preview),
+        data: { nothing_to_preview_text: I18n.t(:nothing_to_preview, scope: 'simple_form_markdown_editor') }
+      )
     end
 
     # ---------------------------------------------------------------------

@@ -36,6 +36,7 @@ do ($ = jQuery, window, document) ->
           data:
             _method: 'PUT'
             text: @get_textarea().val() || ''
+            options: @get_textarea_options()
           success: (html) =>
             @get_preview_div().html(html) or "<p>#{@get_nothing_to_preview_text()}</p>"
         )
@@ -51,6 +52,7 @@ do ($ = jQuery, window, document) ->
     get_preview_tab: -> @get_tab_lis().filter('.preview')
     get_edit_tab: -> @get_tab_lis().filter('.edit')
     get_nothing_to_preview_text: -> @get_preview_div().data('nothing-to-preview-text') or "Nothing to preview."
+    get_textarea_options: -> @$element.data('options')
 
   # ---------------------------------------------------------------------
 
