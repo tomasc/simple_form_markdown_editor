@@ -18,7 +18,7 @@ module SimpleFormMarkdownEditor
 
     # =====================================================================
 
-    def input wrapper_options
+    def input(wrapper_options)
       template.content_tag :div, merge_wrapper_options(input_html_options, wrapper_options) do
         template.concat header
         template.concat help
@@ -31,9 +31,7 @@ module SimpleFormMarkdownEditor
 
     def input_html_options
       super[:data] ||= {}
-      super[:data].merge!(
-        preview_path: options.fetch(:route, MarkdownEditorInput.configuration.route)
-      )
+      super[:data][:preview_path] = options.fetch(:route, MarkdownEditorInput.configuration.route)
       super
     end
 
@@ -60,7 +58,7 @@ module SimpleFormMarkdownEditor
     def tabs
       template.content_tag :div, class: 'editor_tabs' do
         template.content_tag :ul, class: 'tabs' do
-          tab_list.map{ |t| tab(t) }.flatten.join.html_safe
+          tab_list.map { |t| tab(t) }.flatten.join.html_safe
         end
       end
     end
@@ -69,11 +67,11 @@ module SimpleFormMarkdownEditor
       %w(edit preview)
     end
 
-    def tab name
+    def tab(name)
       template.content_tag :li, class: ['tab', name.to_s.underscore.downcase], data: { command: name.to_s } do
         template.content_tag :span,
-          I18n.t(name.to_sym, scope: 'simple_form_markdown_editor.tabs'),
-          class: name.to_s.underscore.downcase
+                             I18n.t(name.to_sym, scope: 'simple_form_markdown_editor.tabs'),
+                             class: name.to_s.underscore.downcase
       end
     end
 
@@ -87,19 +85,19 @@ module SimpleFormMarkdownEditor
 
     def button_groups
       template.content_tag :ul, class: 'button_groups' do
-        button_list.map{ |group| button_group(group) }.flatten.join.html_safe
+        button_list.map { |group| button_group(group) }.flatten.join.html_safe
       end
     end
 
-    def button_group g
+    def button_group(g)
       template.content_tag :li, class: 'button_group', data: { buttons: g.join(' ') } do
         template.content_tag :ul, class: 'buttons' do
-          g.map{ |b| button(b) }.flatten.join.html_safe
+          g.map { |b| button(b) }.flatten.join.html_safe
         end
       end
     end
 
-    def button b
+    def button(b)
       return if b == 'help' && !help_enabled?
       template.content_tag :li, class: ['button', b], data: { toggle: b } do
         template.content_tag :button, I18n.t(b.to_sym, scope: 'simple_form_markdown_editor.buttons'), class: b, value: b, role: '', state: '', name: '', type: 'button'
@@ -135,11 +133,11 @@ module SimpleFormMarkdownEditor
 
     def help_sections
       template.content_tag :ul, class: %w(sections) do
-        i18n_help.map{ |section, content| help_section(section, content) }.flatten.join.html_safe
+        i18n_help.map { |section, content| help_section(section, content) }.flatten.join.html_safe
       end
     end
 
-    def help_section section, content
+    def help_section(section, content)
       return unless content[:title]
       template.content_tag :li, class: ['section', section.to_s], data: { toggle: section.to_s } do
         template.content_tag :span, content[:title].to_s, class: section.to_s
@@ -149,12 +147,12 @@ module SimpleFormMarkdownEditor
     def help_sub_sections
       i18n_help.map do |section, content|
         template.content_tag :ul, class: ['sub_sections', section.to_s] do
-          content[:elements].map{ |section, content| help_sub_section(section, content) }.flatten.join.html_safe
+          content[:elements].map { |sec, con| help_sub_section(sec, con) }.flatten.join.html_safe
         end
       end.flatten.join.html_safe
     end
 
-    def help_sub_section section, content
+    def help_sub_section(section, content)
       return unless content[:title]
       template.content_tag :li, class: ['sub_section', section.to_s], data: { toggle: section.to_s } do
         template.content_tag :span, content[:title].to_s, class: section.to_s
@@ -163,9 +161,9 @@ module SimpleFormMarkdownEditor
 
     def help_texts
       i18n_help.map do |section, content|
-        content[:elements].map do |element, content|
-          template.content_tag :div, class: ['help_text', element.to_s], data: { section: section.to_s, sub_section: element.to_s } do
-            Renderer.call(content[:text], { render_options: render_options, extensions: extensions })
+        content[:elements].map do |el, con|
+          template.content_tag :div, class: ['help_text', el.to_s], data: { section: section.to_s, sub_section: el.to_s } do
+            Renderer.call(con[:text], render_options: render_options, extensions: extensions)
           end
         end
       end.flatten.join.html_safe

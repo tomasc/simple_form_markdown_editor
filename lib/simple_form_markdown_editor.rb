@@ -1,12 +1,12 @@
-require "simple_form"
+require 'simple_form'
 
-require "simple_form_markdown_editor/configuration"
-require "simple_form_markdown_editor/engine"
-require "simple_form_markdown_editor/markdown_editor_input"
-require "simple_form_markdown_editor/renderer"
-require "simple_form_markdown_editor/version"
+require 'simple_form_markdown_editor/configuration'
+require 'simple_form_markdown_editor/engine'
+require 'simple_form_markdown_editor/markdown_editor_input'
+require 'simple_form_markdown_editor/renderer'
+require 'simple_form_markdown_editor/version'
 
-require "i18n"
+require 'i18n'
 
 # ---------------------------------------------------------------------
 
@@ -18,4 +18,4 @@ end
 
 # ---------------------------------------------------------------------
 
-I18n.load_path += Dir.glob(File.join( File.dirname(__FILE__), 'config', 'locales', '*.yml' ))
+I18n.load_path += Dir.glob(File.join(File.dirname(__FILE__), 'config', 'locales', '*.yml'))
