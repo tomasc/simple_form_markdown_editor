@@ -62,7 +62,8 @@ Refer to [redcarpet](https://github.com/vmg/redcarpet) for a list of available [
 # config/initializers/simple_form_markdown_editor.rb
 
 SimpleFormMarkdownEditor::MarkdownEditorInput.configure do |c|
-  c.buttons = [ %w(h1 h2 h3), %w(strong em), %w(a img) ]
+  c.buttons = [%w(h1 h2 h3), %w(strong em), %w(a img)]
+  c.button_definitions = { strong: '**%{str}**' }
   c.help = { enabled: true, visible: false }
   c.extensions = {
     footnotes: true,

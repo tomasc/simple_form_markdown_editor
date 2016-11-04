@@ -1,6 +1,7 @@
 module SimpleFormMarkdownEditor
   class Configuration
     attr_accessor :buttons
+    attr_accessor :button_definitions
     attr_accessor :extensions
     attr_accessor :help
     attr_accessor :render_class
@@ -17,6 +18,26 @@ module SimpleFormMarkdownEditor
         %w(ul ol blockquote hr),
         %w(help)
       ]
+    end
+
+    def button_definitions
+      @button_definitions ||= {
+        strong: '**%{str}**',
+        em: '*%{str}*',
+        code: '`%{str}`',
+        hr: '%{str}***',
+        ul: '* %{str}',
+        ol: '1. %{str}',
+        blockquote: '> %{str}',
+        h1: '# %{str}',
+        h2: '## %{str}',
+        h3: '### %{str}',
+        h4: '#### %{str}',
+        h5: '##### %{str}',
+        h6: '###### %{str}',
+        a: '[%{str}](|)',
+        img: '![%{str}](|)'
+      }
     end
 
     def extensions

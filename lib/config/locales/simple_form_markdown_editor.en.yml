@@ -15,8 +15,8 @@ en:
       blockquote: quote
       hr: hr
       code: code
-      strong: bold
-      em: italic
+      strong: b
+      em: i
       a: link
       img: image
       help: help
@@ -66,7 +66,7 @@ en:
           emphasis:
             title: Emphasis
             text: |+
-              Asterisks (`*`) and underscores (`_`) are treated as emphasis and are wrapped with an `<em>` tag, which usually displays as italics in most browsers. Double asterisks (`**`) or double underscores (`__`) are treated as bold using the `<strong>` tag. 
+              Asterisks (`*`) and underscores (`_`) are treated as emphasis and are wrapped with an `<em>` tag, which usually displays as italics in most browsers. Double asterisks (`**`) or double underscores (`__`) are treated as bold using the `<strong>` tag.
 
               To create italic or bold text, simply wrap your words in single/double asterisks/underscores. For example, `**My double emphasis text**` becomes **My double emphasis text**, and `*My single emphasis text*` becomes *My single emphasis text*.
           code:

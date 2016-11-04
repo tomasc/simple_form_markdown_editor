@@ -4,22 +4,7 @@ do ($ = jQuery, window, document) ->
   pluginName = 'simple_form_markdown_editor_buttons'
   defaults =
     debug: false
-    definitions:
-      'strong':     '**%{str}**'
-      'em':         '*%{str}*'
-      'code':       '`%{str}`'
-      'hr':         '%{str}***'
-      'ul':         '* %{str}'
-      'ol':         '1. %{str}'
-      'blockquote': '> %{str}'
-      'h1':         '# %{str}'
-      'h2':         '## %{str}'
-      'h3':         '### %{str}'
-      'h4':         '#### %{str}'
-      'h5':         '##### %{str}'
-      'h6':         '###### %{str}'
-      'a':          '[%{str}](|)'
-      'img':        '![%{str}](|)'
+    definitions: JSON.parse('<%= SimpleFormMarkdownEditor::MarkdownEditorInput.configuration.button_definitions.to_json %>')
 
   # ---------------------------------------------------------------------
 
@@ -113,14 +98,14 @@ do ($ = jQuery, window, document) ->
     args = arguments
     if options is `undefined` or typeof options is "object"
       @each ->
-        $.data this, "plugin_" + pluginName, new Plugin(this, options)  unless $.data(this, "plugin_" + pluginName)
+        $.data this, "plugin_" + pluginName, new Plugin(this, options) unless $.data(this, "plugin_" + pluginName)
 
     else if typeof options is "string" and options[0] isnt "_" and options isnt "init"
       returns = undefined
       @each ->
         instance = $.data(this, "plugin_" + pluginName)
-        returns = instance[options].apply(instance, Array::slice.call(args, 1))  if instance instanceof Plugin and typeof instance[options] is "function"
-        $.data this, "plugin_" + pluginName, null  if options is "destroy"
+        returns = instance[options].apply(instance, Array::slice.call(args, 1)) if instance instanceof Plugin and typeof instance[options] is "function"
+        $.data this, "plugin_" + pluginName, null if options is "destroy"
 
       (if returns isnt `undefined` then returns else this)
 
