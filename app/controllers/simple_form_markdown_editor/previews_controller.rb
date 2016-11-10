@@ -17,7 +17,7 @@ module SimpleFormMarkdownEditor
     end
 
     def text
-      params.require(:text)
+      params.fetch(:text, '')
     end
 
     def options

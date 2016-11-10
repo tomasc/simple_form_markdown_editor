@@ -1,0 +1,40 @@
+# https://github.com/jquery-boilerplate/jquery-boilerplate/
+do ($ = jQuery, window, document) ->
+  pluginName = 'simple_form_markdown_editor__preview'
+  defaults =
+    debug: false
+
+  class Plugin
+    constructor: (@element, options) ->
+      @settings = $.extend {}, defaults, options
+
+      @$element = $(@element)
+
+      @_defaults = defaults
+      @_name = pluginName
+
+      @init()
+
+    init: ->
+      @$element.on 'show', (e) =>
+        content = e.html or "<p>" + @get_nothing_to_preview_text() + "</p>"
+        @$element.html(content)
+
+    get_nothing_to_preview_text: -> @$element.data('nothing-to-preview-text') or 'Nothing to preview.'
+
+  # ---------------------------------------------------------------------
+
+  $.fn[pluginName] = (options) ->
+    args = arguments
+    if options is `undefined` or typeof options is "object"
+      @each ->
+        $.data this, "plugin_" + pluginName, new Plugin(this, options)  unless $.data(this, "plugin_" + pluginName)
+
+    else if typeof options is "string" and options[0] isnt "_" and options isnt "init"
+      returns = undefined
+      @each ->
+        instance = $.data(this, "plugin_" + pluginName)
+        returns = instance[options].apply(instance, Array::slice.call(args, 1))  if instance instanceof Plugin and typeof instance[options] is "function"
+        $.data this, "plugin_" + pluginName, null  if options is "destroy"
+
+      (if returns isnt `undefined` then returns else this)
