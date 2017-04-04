@@ -14,7 +14,7 @@ module SimpleFormMarkdownEditor
 
     # overwrite this in your own controller
     def text_preview
-      Renderer.call(text, { render_class: render_class, extensions: extensions })
+      Renderer.call(text, { render_class: render_class, extensions: extensions.to_h })
     end
 
     def text
