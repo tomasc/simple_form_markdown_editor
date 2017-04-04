@@ -50,7 +50,7 @@ do ($ = jQuery, window, document) ->
             text: val
             options: options
           success: (html) =>
-            @get_preview().trigger(type: 'show', html: html)
+            @get_preview().trigger(type: 'show_preview', html: html)
 
       @$element.on 'toggle_help', (e) =>
         e.stopPropagation()

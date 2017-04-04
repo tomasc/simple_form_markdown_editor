@@ -16,11 +16,13 @@ do ($ = jQuery, window, document) ->
       @init()
 
     init: ->
-      @$element.on 'show', (e) =>
+      @$element.on 'show_preview', (e) =>
+        e.stopPropagation()
         content = e.html or "<p>" + @get_nothing_to_preview_text() + "</p>"
         @$element.html(content)
 
-    get_nothing_to_preview_text: -> @$element.data('nothing-to-preview-text') or 'Nothing to preview.'
+    get_nothing_to_preview_text: ->
+      @$element.data('nothing-to-preview-text') or 'Nothing to preview.'
 
   # ---------------------------------------------------------------------
 
