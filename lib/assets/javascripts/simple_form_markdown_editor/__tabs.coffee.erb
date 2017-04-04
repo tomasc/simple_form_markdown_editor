@@ -17,7 +17,7 @@ do ($ = jQuery, window, document) ->
       @init()
 
     init: ->
-      @set_active_tab(@get_preview_tab())
+      @set_active_tab(@get_edit_tab())
 
       @$element.on 'click', @get_tabs().selector, (e) =>
         $tab = $(e.currentTarget)
