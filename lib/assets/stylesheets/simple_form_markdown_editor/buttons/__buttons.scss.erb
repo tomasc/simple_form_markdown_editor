@@ -1,0 +1,9 @@
+@import 'simple_form_markdown_editor/partials';
+
+.<%= SimpleFormMarkdownEditor.dom_class(:buttons) %> {
+  .<%= SimpleFormMarkdownEditor.dom_class(:button_group) %> {
+    &:not(:last-child) {
+      margin-right: 1em;
+    }
+  }
+}

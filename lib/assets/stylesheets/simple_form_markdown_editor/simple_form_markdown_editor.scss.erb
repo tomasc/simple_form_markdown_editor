@@ -1,0 +1,23 @@
+@import 'simple_form_markdown_editor/partials';
+
+.<%= SimpleFormMarkdownEditor.dom_class %> {
+  // is_editor
+  &.<%= SimpleFormMarkdownEditor.dom_class(:is_editor) %> {
+    .<%= SimpleFormMarkdownEditor.dom_class(:editor) %> { display: block; }
+    .<%= SimpleFormMarkdownEditor.dom_class(:preview) %> { display: none; }
+  }
+
+  &:not(.<%= SimpleFormMarkdownEditor.dom_class(:is_editor) %>) {
+    .<%= SimpleFormMarkdownEditor.dom_class(:editor) %> { display: none; }
+    .<%= SimpleFormMarkdownEditor.dom_class(:preview) %> { display: block; }
+  }
+
+  // is_help
+  &.<%= SimpleFormMarkdownEditor.dom_class(:is_help) %> {
+    .<%= SimpleFormMarkdownEditor.dom_class(:help) %> { display: block; }
+  }
+
+  &:not(.<%= SimpleFormMarkdownEditor.dom_class(:is_help) %>) {
+    .<%= SimpleFormMarkdownEditor.dom_class(:help) %> { display: none; }
+  }
+}

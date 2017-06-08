@@ -20,9 +20,11 @@ module SimpleFormMarkdownEditor
 
     def input(wrapper_options)
       attrs = merge_wrapper_options(input_html_options, wrapper_options)
+      attrs[:class] = [SimpleFormMarkdownEditor.dom_class, SimpleFormMarkdownEditor.dom_class(:is_editor)]
+      attrs[:class] << SimpleFormMarkdownEditor.dom_class(:is_help) if help_visible?
       attrs[:data] ||= {}
       attrs[:data][:preview_path] = preview_path
-      attrs[:data][:options] = { render_class: render_class.to_s, render_options: render_options, extensions: extensions }
+      attrs[:data][:options] = { render_class: render_class, render_options: render_options, extensions: extensions }
 
       template.content_tag :div, attrs do
         template.concat header
@@ -50,12 +52,8 @@ module SimpleFormMarkdownEditor
       options.fetch(:extensions, MarkdownEditorInput.configuration.extensions)
     end
 
-    def input_html_classes
-      super.push('simple_form_markdown_editor')
-    end
-
     def header
-      template.content_tag :div, class: 'header' do
+      template.content_tag :div, class: SimpleFormMarkdownEditor.dom_class(:header) do
         tabs + buttons
       end.html_safe
     end
@@ -63,10 +61,8 @@ module SimpleFormMarkdownEditor
     # ---------------------------------------------------------------------
 
     def tabs
-      template.content_tag :div, class: 'editor_tabs' do
-        template.content_tag :ul, class: 'tabs' do
-          tab_list.map { |t| tab(t) }.flatten.join.html_safe
-        end
+      template.content_tag :div, class: SimpleFormMarkdownEditor.dom_class(:tabs) do
+        tab_list.map { |t| tab(t) }.flatten.join.html_safe
       end
     end
 
@@ -75,44 +71,32 @@ module SimpleFormMarkdownEditor
     end
 
     def tab(name)
-      template.content_tag :li, class: ['tab', name.to_s.underscore.downcase], data: { command: name.to_s } do
-        template.content_tag(
-          :span,
-          I18n.t(name.to_sym, scope: 'simple_form_markdown_editor.tabs'),
-          class: name.to_s.underscore.downcase
-        )
+      template.content_tag :div, class: SimpleFormMarkdownEditor.dom_class([:tab, name]) do
+        template.content_tag(:span, I18n.t(name, scope: 'simple_form_markdown_editor.tabs'))
       end
     end
 
     # ---------------------------------------------------------------------
 
     def buttons
-      template.content_tag :div, class: 'buttons' do
-        button_groups
-      end
-    end
-
-    def button_groups
-      template.content_tag :ul, class: 'button_groups' do
+      template.content_tag :div, class: SimpleFormMarkdownEditor.dom_class(:buttons) do
         button_list.map { |group| button_group(group) }.flatten.join.html_safe
       end
     end
 
     def button_group(g)
-      template.content_tag :li, class: 'button_group', data: { buttons: g.join(' ') } do
-        template.content_tag :ul, class: 'buttons' do
-          g.map { |b| button(b) }.flatten.join.html_safe
-        end
+      template.content_tag :div, class: SimpleFormMarkdownEditor.dom_class(:button_group), data: { buttons: g.join(' ') } do
+        g.map { |b| button(b) }.flatten.join.html_safe
       end
     end
 
     def button(b)
       return if b == 'help' && !help_enabled?
-      template.content_tag :li, class: ['button', b], data: { toggle: b } do
+      template.content_tag :div, class: SimpleFormMarkdownEditor.dom_class(:button_wrapper) do
         template.content_tag(
           :button,
-          I18n.t(b.to_sym, scope: 'simple_form_markdown_editor.buttons'),
-          class: b,
+          I18n.t(b, scope: 'simple_form_markdown_editor.buttons'),
+          class: SimpleFormMarkdownEditor.dom_class(:button),
           name: '',
           role: '',
           state: '',
@@ -129,7 +113,7 @@ module SimpleFormMarkdownEditor
     # ---------------------------------------------------------------------
 
     def editor
-      template.content_tag :div, class: %w(editor) do
+      template.content_tag :div, class: SimpleFormMarkdownEditor.dom_class(:editor) do
         @builder.text_area(attribute_name, input_html_options).html_safe
       end
     end
@@ -138,7 +122,7 @@ module SimpleFormMarkdownEditor
       template.content_tag(
         :div,
         I18n.t(:loading, scope: 'simple_form_markdown_editor'),
-        class: %w(preview),
+        class: SimpleFormMarkdownEditor.dom_class(:preview),
         data: { nothing_to_preview_text: I18n.t(:nothing_to_preview, scope: 'simple_form_markdown_editor') }
       )
     end
@@ -147,49 +131,53 @@ module SimpleFormMarkdownEditor
 
     def help
       return unless help_enabled?
-      template.content_tag :div, class: %w(help), data: { visible: help_visible? } do
-        template.content_tag :div, class: %w(help_wrapper) do
-          help_sections + help_sub_sections + help_texts
-        end
+      template.content_tag :div, class: SimpleFormMarkdownEditor.dom_class(:help) do
+        help_sections + help_sub_sections + help_texts
       end
     end
 
     def help_sections
-      template.content_tag :ul, class: %w(sections) do
+      template.content_tag :ul, class: SimpleFormMarkdownEditor.dom_class(:help, :sections) do
         i18n_help.map { |section, content| help_section(section, content) }.flatten.join.html_safe
       end
     end
 
     def help_section(section, content)
       return unless content[:title]
-      template.content_tag :li, class: ['section', section.to_s], data: { toggle: section.to_s } do
-        template.content_tag :span, content[:title].to_s, class: section.to_s
+      template.content_tag :li, class: SimpleFormMarkdownEditor.dom_class(:help, :section), data: { section: section } do
+        template.content_tag :a, content[:title], class: section, href: '#'
       end.html_safe
     end
 
     def help_sub_sections
-      i18n_help.map do |section, content|
-        template.content_tag :ul, class: ['sub_sections', section.to_s] do
-          content[:elements].map { |sec, con| help_sub_section(sec, con) }.flatten.join.html_safe
-        end
-      end.flatten.join.html_safe
+      template.content_tag :ul, class: SimpleFormMarkdownEditor.dom_class(:help, :sub_sections) do
+        i18n_help.map do |section, content|
+          template.content_tag :li, class: SimpleFormMarkdownEditor.dom_class(:help, :sub_section), data: { section: section } do
+            template.content_tag :ul, class: SimpleFormMarkdownEditor.dom_class(:help, :sub_section, :items) do
+              content[:elements].map { |sec, con| help_sub_section_item(sec, con) }.flatten.join.html_safe
+            end
+          end
+        end.flatten.join.html_safe
+      end
     end
 
-    def help_sub_section(section, content)
+    def help_sub_section_item(sub_section, content)
       return unless content[:title]
-      template.content_tag :li, class: ['sub_section', section.to_s], data: { toggle: section.to_s } do
-        template.content_tag :span, content[:title].to_s, class: section.to_s
+      template.content_tag :li, class: SimpleFormMarkdownEditor.dom_class(:help, :sub_section, :item), data: { sub_section: sub_section } do
+        template.content_tag :a, content[:title], href: '#'
       end.html_safe
     end
 
     def help_texts
-      i18n_help.map do |section, content|
-        content[:elements].map do |el, con|
-          template.content_tag :div, class: ['help_text', el.to_s], data: { section: section.to_s, sub_section: el.to_s } do
-            Renderer.call(con[:text], render_class: render_class, render_options: render_options, extensions: extensions)
+      template.content_tag :ul, class: SimpleFormMarkdownEditor.dom_class(:help, :texts) do
+        i18n_help.map do |section, content|
+          content[:elements].map do |el, con|
+            template.content_tag :li, class: SimpleFormMarkdownEditor.dom_class(:help, :text), data: { section: section, sub_section: el } do
+              Renderer.call(con[:text], render_class: render_class, render_options: render_options, extensions: extensions)
+            end
           end
-        end
-      end.flatten.join.html_safe
+        end.flatten.join.html_safe
+      end
     end
 
     # ---------------------------------------------------------------------

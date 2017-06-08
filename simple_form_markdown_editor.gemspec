@@ -20,9 +20,12 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'rails', '>= 4.2'
   spec.add_dependency 'simple_form', '>= 3.0.2'
+  spec.add_dependency 'slim'
   spec.add_dependency 'redcarpet'
   spec.add_dependency 'responders'
 
   spec.add_development_dependency 'bundler', '~> 1.6'
-  spec.add_development_dependency 'rake'
+  spec.add_development_dependency 'minitest', '~> 5.0'
+  spec.add_development_dependency 'minitest-rails'
+  spec.add_development_dependency 'rake', '~> 10.0'
 end
