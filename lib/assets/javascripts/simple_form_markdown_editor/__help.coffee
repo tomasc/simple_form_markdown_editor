@@ -23,12 +23,12 @@ do ($ = jQuery, window, document) ->
       $initial_section = @get_sections().first()
       @set_section($initial_section)
 
-      @$element.on 'click', @get_sections().selector, (e) =>
+      @$element.on 'click', '.simple_form_markdown_editor__help__section', (e) =>
         e.preventDefault()
         $section = $(e.currentTarget)
         @set_section($section)
 
-      @$element.on 'click', @get_sub_section_items().selector, (e) =>
+      @$element.on 'click', '.simple_form_markdown_editor__help__sub_section__item', (e) =>
         e.preventDefault()
         $sub_section_item = $(e.currentTarget)
         @set_sub_section_item($sub_section_item)

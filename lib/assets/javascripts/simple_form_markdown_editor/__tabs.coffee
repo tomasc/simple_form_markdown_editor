@@ -19,14 +19,14 @@ do ($ = jQuery, window, document) ->
     init: ->
       @set_active_tab(@get_edit_tab())
 
-      @$element.on 'click', @get_tabs().selector, (e) =>
+      @$element.on 'click', '.simple_form_markdown_editor__tab', (e) =>
         $tab = $(e.currentTarget)
         @set_active_tab($tab)
 
-      @$element.on 'click', @get_edit_tab().selector, (e) =>
+      @$element.on 'click', '.simple_form_markdown_editor__tab__edit', (e) =>
         @$element.trigger('show_editor')
 
-      @$element.on 'click', @get_preview_tab().selector, (e) =>
+      @$element.on 'click', '.simple_form_markdown_editor__tab__preview', (e) =>
         @$element.trigger('show_preview')
 
     # ---------------------------------------------------------------------
