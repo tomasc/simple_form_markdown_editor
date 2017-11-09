@@ -129,36 +129,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       value: function init() {
         var _this = this;
 
-        this.get_help_button().on('click', function (e) {
+        this.$element.on('click', '.simple_form_markdown_editor__button[value="help"]', function (e) {
           return _this.$element.trigger('toggle_help');
         });
-        return this.get_command_buttons().on('click', function (e) {
+        return this.$element.on('click', '.simple_form_markdown_editor__button:not([value="help"])', function (e) {
           var $button, command;
-          $button = $(e.currentTarget);
+          $button = $(e.target);
           command = $button.attr('value');
           return _this.$element.trigger({
             type: 'execute_command',
             command: command
           });
         });
-      }
-
-      // ---------------------------------------------------------------------
-
-    }, {
-      key: 'get_buttons',
-      value: function get_buttons() {
-        return this.$element.find('.simple_form_markdown_editor__button');
-      }
-    }, {
-      key: 'get_command_buttons',
-      value: function get_command_buttons() {
-        return this.get_buttons().not(this.get_help_button());
-      }
-    }, {
-      key: 'get_help_button',
-      value: function get_help_button() {
-        return this.get_buttons().filter("[value='help']");
       }
     }]);
 
@@ -385,17 +367,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         var $initial_section;
         $initial_section = this.get_sections().first();
         this.set_section($initial_section);
-        this.$element.on('click', this.get_sections().selector, function (e) {
-          var $section;
+        this.$element.on('click', '.simple_form_markdown_editor__help__section', function (e) {
           e.preventDefault();
-          $section = $(e.currentTarget);
-          return _this.set_section($section);
+          return _this.set_section($(e.target));
         });
-        return this.$element.on('click', this.get_sub_section_items().selector, function (e) {
-          var $sub_section_item;
+        return this.$element.on('click', '.simple_form_markdown_editor__help__sub_section__item', function (e) {
           e.preventDefault();
-          $sub_section_item = $(e.currentTarget);
-          return _this.set_sub_section_item($sub_section_item);
+          return _this.set_sub_section_item($(e.target));
         });
       }
 
@@ -629,15 +607,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         var _this = this;
 
         this.set_active_tab(this.get_edit_tab());
-        this.$element.on('click', this.get_tabs().selector, function (e) {
-          var $tab;
-          $tab = $(e.currentTarget);
-          return _this.set_active_tab($tab);
+        this.$element.on('click', '.simple_form_markdown_editor__tab', function (e) {
+          return _this.set_active_tab($(e.target));
         });
-        this.$element.on('click', this.get_edit_tab().selector, function (e) {
+        this.$element.on('click', '.simple_form_markdown_editor__tab__edit', function (e) {
           return _this.$element.trigger('show_editor');
         });
-        return this.$element.on('click', this.get_preview_tab().selector, function (e) {
+        return this.$element.on('click', '.simple_form_markdown_editor__tab__preview', function (e) {
           return _this.$element.trigger('show_preview');
         });
       }
