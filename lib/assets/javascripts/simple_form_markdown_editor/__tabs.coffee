@@ -3,7 +3,7 @@ do ($ = jQuery, window, document) ->
   pluginName = 'simple_form_markdown_editor__tabs'
   defaults =
     debug: false
-    is_active_class: '<%= SimpleFormMarkdownEditor.dom_class(:tab, :is_active) %>'
+    is_active_class: 'simple_form_markdown_editor__tab__is_active'
 
   class Plugin
     constructor: (@element, options) ->
@@ -31,9 +31,9 @@ do ($ = jQuery, window, document) ->
 
     # ---------------------------------------------------------------------
 
-    get_edit_tab: -> @$element.find('.<%= SimpleFormMarkdownEditor.dom_class(:tab, :edit) %>')
-    get_preview_tab: -> @$element.find('.<%= SimpleFormMarkdownEditor.dom_class(:tab, :preview) %>')
-    get_tabs: -> @$element.find('.<%= SimpleFormMarkdownEditor.dom_class(:tab) %>')
+    get_edit_tab: -> @$element.find('.simple_form_markdown_editor__tab__edit')
+    get_preview_tab: -> @$element.find('.simple_form_markdown_editor__tab__preview')
+    get_tabs: -> @$element.find('.simple_form_markdown_editor__tab')
 
     # ---------------------------------------------------------------------
 

@@ -26,7 +26,7 @@ do ($ = jQuery, window, document) ->
 
     # ---------------------------------------------------------------------
 
-    get_buttons: -> @$element.find('.<%= SimpleFormMarkdownEditor.dom_class(:button) %>')
+    get_buttons: -> @$element.find('.simple_form_markdown_editor__button')
     get_command_buttons: -> @get_buttons().not(@get_help_button())
     get_help_button: -> @get_buttons().filter("[value='help']")
 

@@ -50,6 +50,42 @@ Use in forms:
 = form.input :markdown, as: :markdown_editor
 ```
 
+### As NPM module
+
+When using [webpacker](https://github.com/rails/webpacker), you can include JS via NPM module:
+
+`yarn add @tomasc/simple_form_markdown_editor`
+
+Then in your JS file, for example:
+
+```js
+require('simple_form_markdown_editor')
+
+$('.simple_form_markdown_editor').simple_form_markdown_editor()
+```
+
+Note: you might want to have jQuery exposed for this to work correctly. For example, in your `webpack` config:
+
+```js
+module: {
+  rules: [
+    {
+      test: require.resolve('jquery'),
+      use: [
+        { loader: 'expose-loader', options: '$' },
+        { loader: 'expose-loader', options: 'jQuery' }
+      ],
+    }
+  ],
+},
+```
+
+The CSS should be still included via Sprockets as usual. I.e.:
+
+```css
+*= require simple_form_markdown_editor
+```
+
 ## Configuration
 
 Configuration is possible app-wide (using an initializer) and per input.

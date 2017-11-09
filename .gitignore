@@ -1,2 +1,4 @@
 test/dummy/Gemfile.lock
 pkg
+node_modules
+yarn-error.log

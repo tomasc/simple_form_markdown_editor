@@ -3,10 +3,10 @@ do ($ = jQuery, window, document) ->
   pluginName = 'simple_form_markdown_editor__help'
   defaults =
     debug: false
-    section_is_active_class: '<%= SimpleFormMarkdownEditor.dom_class(:help, :section, :is_active) %>'
-    sub_section_is_active_class: '<%= SimpleFormMarkdownEditor.dom_class(:help, :sub_section, :is_active) %>'
-    sub_section_item_is_active_class: '<%= SimpleFormMarkdownEditor.dom_class(:help, :sub_section, :item, :is_active) %>'
-    help_text_is_active_class: '<%= SimpleFormMarkdownEditor.dom_class(:help, :text, :is_active) %>'
+    section_is_active_class: 'simple_form_markdown_editor__help__section__is_active'
+    sub_section_is_active_class: 'simple_form_markdown_editor__help__sub_section__is_active'
+    sub_section_item_is_active_class: 'simple_form_markdown_editor__help__sub_section__item__is_active'
+    help_text_is_active_class: 'simple_form_markdown_editor__help__text__is_active'
 
   class Plugin
     constructor: (@element, options) ->
@@ -36,11 +36,11 @@ do ($ = jQuery, window, document) ->
     # ---------------------------------------------------------------------
 
     get_help_text: (sub_section_name) -> @get_help_texts().filter("[data-sub-section='#{sub_section_name}']")
-    get_help_texts: -> @$element.find('.<%= SimpleFormMarkdownEditor.dom_class(:help, :text) %>')
-    get_sections: -> @$element.find('.<%= SimpleFormMarkdownEditor.dom_class(:help, :section) %>')
+    get_help_texts: -> @$element.find('.simple_form_markdown_editor__help__text')
+    get_sections: -> @$element.find('.simple_form_markdown_editor__help__section')
     get_sub_section: (section_name) -> @get_sub_sections().filter("[data-section='#{section_name}']")
-    get_sub_section_items: -> @$element.find('.<%= SimpleFormMarkdownEditor.dom_class(:help, :sub_section, :item) %>')
-    get_sub_sections: -> @$element.find('.<%= SimpleFormMarkdownEditor.dom_class(:help, :sub_section) %>')
+    get_sub_section_items: -> @$element.find('.simple_form_markdown_editor__help__sub_section__item')
+    get_sub_sections: -> @$element.find('.simple_form_markdown_editor__help__sub_section')
 
     # ---------------------------------------------------------------------
 
@@ -54,7 +54,7 @@ do ($ = jQuery, window, document) ->
     set_sub_section: ($sub_section) ->
       $sub_section.siblings().removeClass(@settings.sub_section_is_active_class)
       $sub_section.addClass(@settings.sub_section_is_active_class)
-      $sub_section_item = $sub_section.find('.<%= SimpleFormMarkdownEditor.dom_class(:help, :sub_section, :item) %>').first()
+      $sub_section_item = $sub_section.find('.simple_form_markdown_editor__help__sub_section__item').first()
       @set_sub_section_item($sub_section_item)
 
     set_sub_section_item: ($sub_section_item) ->
