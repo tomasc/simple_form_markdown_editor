@@ -16,19 +16,13 @@ do ($ = jQuery, window, document) ->
       @init()
 
     init: ->
-      @get_help_button().on 'click', (e) =>
+      @$element.on 'click', '.simple_form_markdown_editor__button[value="help"]', (e) =>
         @$element.trigger('toggle_help')
 
-      @get_command_buttons().on 'click', (e) =>
-        $button = $(e.currentTarget)
+      @$element.on 'click', '.simple_form_markdown_editor__button:not([value="help"])', (e) =>
+        $button = $(e.target)
         command = $button.attr('value')
         @$element.trigger(type: 'execute_command', command: command)
-
-    # ---------------------------------------------------------------------
-
-    get_buttons: -> @$element.find('.simple_form_markdown_editor__button')
-    get_command_buttons: -> @get_buttons().not(@get_help_button())
-    get_help_button: -> @get_buttons().filter("[value='help']")
 
   # ---------------------------------------------------------------------
 

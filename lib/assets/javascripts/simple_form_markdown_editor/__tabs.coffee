@@ -20,8 +20,7 @@ do ($ = jQuery, window, document) ->
       @set_active_tab(@get_edit_tab())
 
       @$element.on 'click', '.simple_form_markdown_editor__tab', (e) =>
-        $tab = $(e.currentTarget)
-        @set_active_tab($tab)
+        @set_active_tab($(e.target))
 
       @$element.on 'click', '.simple_form_markdown_editor__tab__edit', (e) =>
         @$element.trigger('show_editor')
