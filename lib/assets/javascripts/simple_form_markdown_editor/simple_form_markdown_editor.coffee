@@ -5,5 +5,4 @@
 #= require simple_form_markdown_editor/__preview
 #= require simple_form_markdown_editor/__tabs
 
-$ ->
-  $('.<%= SimpleFormMarkdownEditor.dom_class %>').simple_form_markdown_editor()
+$ -> $('.simple_form_markdown_editor').simple_form_markdown_editor()
