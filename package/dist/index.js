@@ -369,11 +369,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.set_section($initial_section);
         this.$element.on('click', '.simple_form_markdown_editor__help__section', function (e) {
           e.preventDefault();
-          return _this.set_section($(e.target));
+          return _this.set_section($(e.currentTarget));
         });
         return this.$element.on('click', '.simple_form_markdown_editor__help__sub_section__item', function (e) {
           e.preventDefault();
-          return _this.set_sub_section_item($(e.target));
+          return _this.set_sub_section_item($(e.currentTarget));
         });
       }
 
@@ -608,7 +608,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         this.set_active_tab(this.get_edit_tab());
         this.$element.on('click', '.simple_form_markdown_editor__tab', function (e) {
-          return _this.set_active_tab($(e.target));
+          return _this.set_active_tab($(e.currentTarget));
         });
         this.$element.on('click', '.simple_form_markdown_editor__tab__edit', function (e) {
           return _this.$element.trigger('show_editor');

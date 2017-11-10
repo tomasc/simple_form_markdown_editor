@@ -25,11 +25,11 @@ do ($ = jQuery, window, document) ->
 
       @$element.on 'click', '.simple_form_markdown_editor__help__section', (e) =>
         e.preventDefault()
-        @set_section($(e.target))
+        @set_section($(e.currentTarget))
 
       @$element.on 'click', '.simple_form_markdown_editor__help__sub_section__item', (e) =>
         e.preventDefault()
-        @set_sub_section_item($(e.target))
+        @set_sub_section_item($(e.currentTarget))
 
     # ---------------------------------------------------------------------
 
