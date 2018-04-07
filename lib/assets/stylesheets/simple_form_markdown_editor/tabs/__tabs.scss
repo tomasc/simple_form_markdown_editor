@@ -1,0 +1,7 @@
+.simple_form_markdown_editor__tabs {
+  .simple_form_markdown_editor__tab {
+    &:not(:last-child) {
+      margin-right: 1em;
+    }
+  }
+}

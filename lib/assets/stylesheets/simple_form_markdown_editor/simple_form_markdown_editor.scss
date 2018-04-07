@@ -1,0 +1,19 @@
+.simple_form_markdown_editor {
+  &.simple_form_markdown_editor__is_editor {
+    .simple_form_markdown_editor__editor { display: block; }
+    .simple_form_markdown_editor__preview { display: none; }
+  }
+
+  &:not(.simple_form_markdown_editor__is_editor) {
+    .simple_form_markdown_editor__editor { display: none; }
+    .simple_form_markdown_editor__preview { display: block; }
+  }
+
+  &.simple_form_markdown_editor__is_help {
+    .simple_form_markdown_editor__help { display: block; }
+  }
+
+  &:not(.simple_form_markdown_editor__is_help) {
+    .simple_form_markdown_editor__help { display: none; }
+  }
+}

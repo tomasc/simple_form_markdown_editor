@@ -1,0 +1,59 @@
+.simple_form_markdown_editor.simple_form_markdown_editor__is_editor .simple_form_markdown_editor__editor {
+  display: block; }
+
+.simple_form_markdown_editor.simple_form_markdown_editor__is_editor .simple_form_markdown_editor__preview {
+  display: none; }
+
+.simple_form_markdown_editor:not(.simple_form_markdown_editor__is_editor) .simple_form_markdown_editor__editor {
+  display: none; }
+
+.simple_form_markdown_editor:not(.simple_form_markdown_editor__is_editor) .simple_form_markdown_editor__preview {
+  display: block; }
+
+.simple_form_markdown_editor.simple_form_markdown_editor__is_help .simple_form_markdown_editor__help {
+  display: block; }
+
+.simple_form_markdown_editor:not(.simple_form_markdown_editor__is_help) .simple_form_markdown_editor__help {
+  display: none; }
+.simple_form_markdown_editor__button_group {
+  display: inline-block; }
+.simple_form_markdown_editor__button_wrapper {
+  display: inline-block; }
+.simple_form_markdown_editor__buttons .simple_form_markdown_editor__button_group:not(:last-child) {
+  margin-right: 1em; }
+.simple_form_markdown_editor__help__sections {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+.simple_form_markdown_editor__help__sub_section__items {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+.simple_form_markdown_editor__help__sub_section {
+  display: none; }
+
+.simple_form_markdown_editor__help__sub_section__is_active {
+  display: block; }
+.simple_form_markdown_editor__help__sub_sections {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+.simple_form_markdown_editor__help__text {
+  display: none; }
+
+.simple_form_markdown_editor__help__text__is_active {
+  display: block; }
+.simple_form_markdown_editor__help__texts {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+.simple_form_markdown_editor__help__sections,
+.simple_form_markdown_editor__help__sub_sections,
+.simple_form_markdown_editor__help__texts {
+  display: inline-block;
+  vertical-align: top;
+  width: 33.33333%; }
+.simple_form_markdown_editor__tab {
+  display: inline-block; }
+.simple_form_markdown_editor__tabs .simple_form_markdown_editor__tab:not(:last-child) {
+  margin-right: 1em; }

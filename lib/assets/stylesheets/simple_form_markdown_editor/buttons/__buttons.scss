@@ -1,0 +1,7 @@
+.simple_form_markdown_editor__buttons {
+  .simple_form_markdown_editor__button_group {
+    &:not(:last-child) {
+      margin-right: 1em;
+    }
+  }
+}

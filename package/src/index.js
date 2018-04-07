@@ -1,7 +1,26 @@
-require('../../lib/assets/javascripts/simple_form_markdown_editor/__buttons')
-require('../../lib/assets/javascripts/simple_form_markdown_editor/__editor')
-require('../../lib/assets/javascripts/simple_form_markdown_editor/__help')
-require('../../lib/assets/javascripts/simple_form_markdown_editor/__preview')
-require('../../lib/assets/javascripts/simple_form_markdown_editor/__tabs')
+import '../../lib/assets/javascripts/simple_form_markdown_editor/__buttons'
+import '../../lib/assets/javascripts/simple_form_markdown_editor/__editor'
+import '../../lib/assets/javascripts/simple_form_markdown_editor/__help'
+import '../../lib/assets/javascripts/simple_form_markdown_editor/__preview'
+import '../../lib/assets/javascripts/simple_form_markdown_editor/__tabs'
+import '../../lib/assets/javascripts/simple_form_markdown_editor/__base'
 
-require('../../lib/assets/javascripts/simple_form_markdown_editor/__base')
+import '../../lib/assets/stylesheets/simple_form_markdown_editor/simple_form_markdown_editor.scss'
+import '../../lib/assets/stylesheets/simple_form_markdown_editor/buttons/__button_group.scss'
+import '../../lib/assets/stylesheets/simple_form_markdown_editor/buttons/__button_wrapper.scss'
+import '../../lib/assets/stylesheets/simple_form_markdown_editor/buttons/__button.scss'
+import '../../lib/assets/stylesheets/simple_form_markdown_editor/buttons/__buttons.scss'
+import '../../lib/assets/stylesheets/simple_form_markdown_editor/editor/__editor.scss'
+import '../../lib/assets/stylesheets/simple_form_markdown_editor/header/__header.scss'
+import '../../lib/assets/stylesheets/simple_form_markdown_editor/help/__help__section.scss'
+import '../../lib/assets/stylesheets/simple_form_markdown_editor/help/__help__sections.scss'
+import '../../lib/assets/stylesheets/simple_form_markdown_editor/help/__help__sub_section__item.scss'
+import '../../lib/assets/stylesheets/simple_form_markdown_editor/help/__help__sub_section__items.scss'
+import '../../lib/assets/stylesheets/simple_form_markdown_editor/help/__help__sub_section.scss'
+import '../../lib/assets/stylesheets/simple_form_markdown_editor/help/__help__sub_sections.scss'
+import '../../lib/assets/stylesheets/simple_form_markdown_editor/help/__help__text.scss'
+import '../../lib/assets/stylesheets/simple_form_markdown_editor/help/__help__texts.scss'
+import '../../lib/assets/stylesheets/simple_form_markdown_editor/help/__help.scss'
+import '../../lib/assets/stylesheets/simple_form_markdown_editor/preview/__preview.scss'
+import '../../lib/assets/stylesheets/simple_form_markdown_editor/tabs/__tab.scss'
+import '../../lib/assets/stylesheets/simple_form_markdown_editor/tabs/__tabs.scss'
