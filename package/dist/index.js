@@ -2,11 +2,11 @@
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("jquery"));
 	else if(typeof define === 'function' && define.amd)
-		define("@tomasc/simple_form_markdown_editor", ["jquery"], factory);
+		define("simple_form_markdown_editor", ["jquery"], factory);
 	else if(typeof exports === 'object')
-		exports["@tomasc/simple_form_markdown_editor"] = factory(require("jquery"));
+		exports["simple_form_markdown_editor"] = factory(require("jquery"));
 	else
-		root["@tomasc/simple_form_markdown_editor"] = factory(root["jquery"]);
+		root["simple_form_markdown_editor"] = factory(root["jquery"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_0__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache

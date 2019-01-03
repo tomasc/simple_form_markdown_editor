@@ -25,7 +25,7 @@ module.exports = {
   },
   entry: './package/src/index.js',
   output: {
-    library: '@tomasc/simple_form_markdown_editor',
+    library: 'simple_form_markdown_editor',
     libraryTarget: 'umd',
     umdNamedDefine: true,
     filename: 'index.js',
