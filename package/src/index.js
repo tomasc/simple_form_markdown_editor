@@ -1,10 +1,3 @@
-import '../../lib/assets/javascripts/simple_form_markdown_editor/__buttons'
-import '../../lib/assets/javascripts/simple_form_markdown_editor/__editor'
-import '../../lib/assets/javascripts/simple_form_markdown_editor/__help'
-import '../../lib/assets/javascripts/simple_form_markdown_editor/__preview'
-import '../../lib/assets/javascripts/simple_form_markdown_editor/__tabs'
-import '../../lib/assets/javascripts/simple_form_markdown_editor/__base'
-
 import '../../lib/assets/stylesheets/simple_form_markdown_editor/simple_form_markdown_editor.scss'
 import '../../lib/assets/stylesheets/simple_form_markdown_editor/buttons/__button_group.scss'
 import '../../lib/assets/stylesheets/simple_form_markdown_editor/buttons/__button_wrapper.scss'
@@ -24,3 +17,6 @@ import '../../lib/assets/stylesheets/simple_form_markdown_editor/help/__help.scs
 import '../../lib/assets/stylesheets/simple_form_markdown_editor/preview/__preview.scss'
 import '../../lib/assets/stylesheets/simple_form_markdown_editor/tabs/__tab.scss'
 import '../../lib/assets/stylesheets/simple_form_markdown_editor/tabs/__tabs.scss'
+
+import SimpleFormMarkdownEditor from './simple_form_markdown_editor/simple_form_markdown_editor'
+export default SimpleFormMarkdownEditor

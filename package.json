@@ -1,5 +1,5 @@
 {
-  "name": "simple_form_markdown_editor",
+  "name": "@tomasc/simple_form_markdown_editor",
   "version": "1.0.0",
   "description": "Simple Markdown editor (inspired by GitHub editor)",
   "main": "package/dist/index.js",
