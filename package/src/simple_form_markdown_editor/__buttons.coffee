@@ -6,10 +6,13 @@ export default class Buttons extends Plugin
     name: 'simple_form_markdown_editor__buttons'
 
   init: ->
-    @$element.on 'click', '.simple_form_markdown_editor__button[value="help"]', (e) =>
+    @$element.on 'click.SimpleFormMarkdownEditor__Buttons', '.simple_form_markdown_editor__button[value="help"]', (e) =>
       @$element.trigger('toggle_help')
 
-    @$element.on 'click', '.simple_form_markdown_editor__button:not([value="help"])', (e) =>
+    @$element.on 'click.SimpleFormMarkdownEditor__Buttons', '.simple_form_markdown_editor__button:not([value="help"])', (e) =>
       $button = $(e.target)
       command = $button.attr('value')
       @$element.trigger(type: 'execute_command', command: command)
+
+  destroy: ->
+    @$element.off '.SimpleFormMarkdownEditor__Buttons'

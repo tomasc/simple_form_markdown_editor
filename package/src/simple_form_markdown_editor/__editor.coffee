@@ -6,11 +6,14 @@ export default class Editor extends Plugin
     debug: false
 
   init: ->
-    @$element.on 'execute_command_definition', (e) =>
+    @$element.on 'execute_command_definition.SimpleFormMarkdownEditor__Editor', (e) =>
       e.stopPropagation()
       command = e.command
       definition = e.definition
       @execute_command_definition(command, definition)
+
+  destroy: ->
+    @$element.off '.SimpleFormMarkdownEditor__Editor'
 
   get_textarea: -> @$element.find 'textarea'
   get_val: -> @get_textarea().val()

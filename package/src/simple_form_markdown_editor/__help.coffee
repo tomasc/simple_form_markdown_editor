@@ -13,13 +13,16 @@ export default class Help extends Plugin
     $initial_section = @get_sections().first()
     @set_section($initial_section)
 
-    @$element.on 'click', '.simple_form_markdown_editor__help__section', (e) =>
+    @$element.on 'click.SimpleFormMarkdownEditor__Help', '.simple_form_markdown_editor__help__section', (e) =>
       e.preventDefault()
       @set_section($(e.currentTarget))
 
-    @$element.on 'click', '.simple_form_markdown_editor__help__sub_section__item', (e) =>
+    @$element.on 'click.SimpleFormMarkdownEditor__Help', '.simple_form_markdown_editor__help__sub_section__item', (e) =>
       e.preventDefault()
       @set_sub_section_item($(e.currentTarget))
+
+  destroy: ->
+    @$element.off '.SimpleFormMarkdownEditor__Help'
 
   get_help_text: (sub_section_name) -> @get_help_texts().filter("[data-sub-section='#{sub_section_name}']")
   get_help_texts: -> @$element.find('.simple_form_markdown_editor__help__text')

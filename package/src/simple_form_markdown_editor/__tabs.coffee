@@ -9,14 +9,17 @@ export default class Tabs extends Plugin
   init: ->
     @set_active_tab(@get_edit_tab())
 
-    @$element.on 'click', '.simple_form_markdown_editor__tab', (e) =>
+    @$element.on 'click.SimpleFormMarkdownEditor__Tabs', '.simple_form_markdown_editor__tab', (e) =>
       @set_active_tab($(e.currentTarget))
 
-    @$element.on 'click', '.simple_form_markdown_editor__tab__edit', (e) =>
+    @$element.on 'click.SimpleFormMarkdownEditor__Tabs', '.simple_form_markdown_editor__tab__edit', (e) =>
       @$element.trigger('show_editor')
 
-    @$element.on 'click', '.simple_form_markdown_editor__tab__preview', (e) =>
+    @$element.on 'click.SimpleFormMarkdownEditor__Tabs', '.simple_form_markdown_editor__tab__preview', (e) =>
       @$element.trigger('show_preview')
+
+  destroy: ->
+    @$element.off '.SimpleFormMarkdownEditor__Tabs'
 
   get_edit_tab: -> @$element.find('.simple_form_markdown_editor__tab__edit')
   get_preview_tab: -> @$element.find('.simple_form_markdown_editor__tab__preview')

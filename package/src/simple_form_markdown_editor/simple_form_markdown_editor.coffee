@@ -36,15 +36,15 @@ export default class SimpleFormMarkdownEditor extends Plugin
     @Preview = new Preview(@get_preview()[0])
     @Tabs = new Tabs(@get_tabs()[0])
 
-    @$element.on 'show_editor', (e) =>
+    @$element.on 'show_editor.SimpleFormMarkdownEditor', (e) =>
       e.stopPropagation()
       @$element.addClass(@options.is_editor_class)
 
-    @$element.on 'show_preview', (e) =>
+    @$element.on 'show_preview.SimpleFormMarkdownEditor', (e) =>
       e.stopPropagation()
       @$element.removeClass(@options.is_editor_class)
 
-    @$element.on 'show_preview', (e) =>
+    @$element.on 'show_preview.SimpleFormMarkdownEditor', (e) =>
       e.stopPropagation()
       options = @get_options()
       val = @Editor.get_val()
@@ -58,11 +58,11 @@ export default class SimpleFormMarkdownEditor extends Plugin
         success: (html) =>
           @get_preview().trigger(type: 'show_preview', html: html)
 
-    @$element.on 'toggle_help', (e) =>
+    @$element.on 'toggle_help.SimpleFormMarkdownEditor', (e) =>
       e.stopPropagation()
       @$element.toggleClass(@options.is_help_class)
 
-    @$element.on 'execute_command', (e) =>
+    @$element.on 'execute_command.SimpleFormMarkdownEditor', (e) =>
       e.stopPropagation()
       command = e.command
       definition = @options.definitions[command]
@@ -70,6 +70,14 @@ export default class SimpleFormMarkdownEditor extends Plugin
         type: 'execute_command_definition'
         command: command
         definition: definition
+
+  destroy: ->
+    @Buttons.destroy() if @Buttons
+    @Editor.destroy() if @Editor
+    @Help.destroy() if @Help
+    @Preview.destroy() if @Preview
+    @Tabs.destroy() if @Tabs
+    @$element.off '.SimpleFormMarkdownEditor'
 
   get_buttons: -> @$element.find('.simple_form_markdown_editor__buttons')
   get_editor: -> @$element.find('.simple_form_markdown_editor__editor')

@@ -416,15 +416,15 @@ exports.default = SimpleFormMarkdownEditor = function () {
         this.Help = new _help2.default(this.get_help()[0]);
         this.Preview = new _preview2.default(this.get_preview()[0]);
         this.Tabs = new _tabs2.default(this.get_tabs()[0]);
-        this.$element.on('show_editor', function (e) {
+        this.$element.on('show_editor.SimpleFormMarkdownEditor', function (e) {
           e.stopPropagation();
           return _this2.$element.addClass(_this2.options.is_editor_class);
         });
-        this.$element.on('show_preview', function (e) {
+        this.$element.on('show_preview.SimpleFormMarkdownEditor', function (e) {
           e.stopPropagation();
           return _this2.$element.removeClass(_this2.options.is_editor_class);
         });
-        this.$element.on('show_preview', function (e) {
+        this.$element.on('show_preview.SimpleFormMarkdownEditor', function (e) {
           var options, val;
           e.stopPropagation();
           options = _this2.get_options();
@@ -445,11 +445,11 @@ exports.default = SimpleFormMarkdownEditor = function () {
             }
           });
         });
-        this.$element.on('toggle_help', function (e) {
+        this.$element.on('toggle_help.SimpleFormMarkdownEditor', function (e) {
           e.stopPropagation();
           return _this2.$element.toggleClass(_this2.options.is_help_class);
         });
-        return this.$element.on('execute_command', function (e) {
+        return this.$element.on('execute_command.SimpleFormMarkdownEditor', function (e) {
           var command, definition;
           e.stopPropagation();
           command = e.command;
@@ -460,6 +460,26 @@ exports.default = SimpleFormMarkdownEditor = function () {
             definition: definition
           });
         });
+      }
+    }, {
+      key: 'destroy',
+      value: function destroy() {
+        if (this.Buttons) {
+          this.Buttons.destroy();
+        }
+        if (this.Editor) {
+          this.Editor.destroy();
+        }
+        if (this.Help) {
+          this.Help.destroy();
+        }
+        if (this.Preview) {
+          this.Preview.destroy();
+        }
+        if (this.Tabs) {
+          this.Tabs.destroy();
+        }
+        return this.$element.off('.SimpleFormMarkdownEditor');
       }
     }, {
       key: 'get_buttons',
@@ -573,10 +593,10 @@ exports.default = Buttons = function () {
       value: function init() {
         var _this2 = this;
 
-        this.$element.on('click', '.simple_form_markdown_editor__button[value="help"]', function (e) {
+        this.$element.on('click.SimpleFormMarkdownEditor__Buttons', '.simple_form_markdown_editor__button[value="help"]', function (e) {
           return _this2.$element.trigger('toggle_help');
         });
-        return this.$element.on('click', '.simple_form_markdown_editor__button:not([value="help"])', function (e) {
+        return this.$element.on('click.SimpleFormMarkdownEditor__Buttons', '.simple_form_markdown_editor__button:not([value="help"])', function (e) {
           var $button, command;
           $button = $(e.target);
           command = $button.attr('value');
@@ -585,6 +605,11 @@ exports.default = Buttons = function () {
             command: command
           });
         });
+      }
+    }, {
+      key: 'destroy',
+      value: function destroy() {
+        return this.$element.off('.SimpleFormMarkdownEditor__Buttons');
       }
     }]);
 
@@ -644,13 +669,18 @@ exports.default = Editor = function () {
       value: function init() {
         var _this2 = this;
 
-        return this.$element.on('execute_command_definition', function (e) {
+        return this.$element.on('execute_command_definition.SimpleFormMarkdownEditor__Editor', function (e) {
           var command, definition;
           e.stopPropagation();
           command = e.command;
           definition = e.definition;
           return _this2.execute_command_definition(command, definition);
         });
+      }
+    }, {
+      key: 'destroy',
+      value: function destroy() {
+        return this.$element.off('.SimpleFormMarkdownEditor__Editor');
       }
     }, {
       key: 'get_textarea',
@@ -770,14 +800,19 @@ exports.default = Help = function () {
         var $initial_section;
         $initial_section = this.get_sections().first();
         this.set_section($initial_section);
-        this.$element.on('click', '.simple_form_markdown_editor__help__section', function (e) {
+        this.$element.on('click.SimpleFormMarkdownEditor__Help', '.simple_form_markdown_editor__help__section', function (e) {
           e.preventDefault();
           return _this2.set_section($(e.currentTarget));
         });
-        return this.$element.on('click', '.simple_form_markdown_editor__help__sub_section__item', function (e) {
+        return this.$element.on('click.SimpleFormMarkdownEditor__Help', '.simple_form_markdown_editor__help__sub_section__item', function (e) {
           e.preventDefault();
           return _this2.set_sub_section_item($(e.currentTarget));
         });
+      }
+    }, {
+      key: 'destroy',
+      value: function destroy() {
+        return this.$element.off('.SimpleFormMarkdownEditor__Help');
       }
     }, {
       key: 'get_help_text',
@@ -906,12 +941,17 @@ exports.default = Preview = function () {
       value: function init() {
         var _this2 = this;
 
-        return this.$element.on('show_preview', function (e) {
+        return this.$element.on('show_preview.SimpleFormMarkdownEditor__Preview', function (e) {
           var content;
           e.stopPropagation();
           content = e.html || "<p>" + _this2.get_nothing_to_preview_text() + "</p>";
           return _this2.$element.html(content);
         });
+      }
+    }, {
+      key: 'destroy',
+      value: function destroy() {
+        return this.$element.off('.SimpleFormMarkdownEditor__Preview');
       }
     }, {
       key: 'get_nothing_to_preview_text',
@@ -976,15 +1016,20 @@ exports.default = Tabs = function () {
         var _this2 = this;
 
         this.set_active_tab(this.get_edit_tab());
-        this.$element.on('click', '.simple_form_markdown_editor__tab', function (e) {
+        this.$element.on('click.SimpleFormMarkdownEditor__Tabs', '.simple_form_markdown_editor__tab', function (e) {
           return _this2.set_active_tab($(e.currentTarget));
         });
-        this.$element.on('click', '.simple_form_markdown_editor__tab__edit', function (e) {
+        this.$element.on('click.SimpleFormMarkdownEditor__Tabs', '.simple_form_markdown_editor__tab__edit', function (e) {
           return _this2.$element.trigger('show_editor');
         });
-        return this.$element.on('click', '.simple_form_markdown_editor__tab__preview', function (e) {
+        return this.$element.on('click.SimpleFormMarkdownEditor__Tabs', '.simple_form_markdown_editor__tab__preview', function (e) {
           return _this2.$element.trigger('show_preview');
         });
+      }
+    }, {
+      key: 'destroy',
+      value: function destroy() {
+        return this.$element.off('.SimpleFormMarkdownEditor__Tabs');
       }
     }, {
       key: 'get_edit_tab',
