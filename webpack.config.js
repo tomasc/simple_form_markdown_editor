@@ -22,8 +22,7 @@ module.exports = {
     ],
   },
   externals: {
-    jquery: 'jquery',
-    sortablejs: 'sortablejs'
+    jquery: 'jquery'
   },
   entry: './package/src/index.js',
   output: {
