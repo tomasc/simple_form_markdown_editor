@@ -2543,21 +2543,7 @@ isstream@~0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/isstream/-/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
 
-jquery-bridget@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/jquery-bridget/-/jquery-bridget-2.0.1.tgz#784d17a85e641780c5d89ac3f8a7eb47b0bce1fc"
-  integrity sha1-eE0XqF5kF4DF2JrD+KfrR7C84fw=
-  dependencies:
-    jquery ">=1.4.2 <4"
-
-jquery-ujs@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/jquery-ujs/-/jquery-ujs-1.2.2.tgz#6a8ef1020e6b6dda385b90a4bddc128c21c56397"
-  integrity sha1-ao7xAg5rbdo4W5CkvdwSjCHFY5c=
-  dependencies:
-    jquery ">=1.8.0"
-
-"jquery@>=1.4.2 <4", jquery@>=1.8.0, jquery@^3.2.1:
+jquery@^3.2.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
   integrity sha512-Ubldcmxp5np52/ENotGxlLe6aGMvmF4R8S6tZjsP6Knsaxd/xp3Zrh50cG93lR6nPXyUFwzN3ZSOQI0wRJNdGg==
