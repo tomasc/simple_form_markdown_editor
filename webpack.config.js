@@ -21,9 +21,9 @@ module.exports = {
       }
     ],
   },
-  externals: {
-    jquery: 'jquery'
-  },
+  externals: [
+    'jquery'
+  ],
   entry: './package/src/index.js',
   output: {
     library: '@tomasc/simple_form_markdown_editor',
